@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="default" namespace="/" extends="struts-default">
+
+        <!--
+        - 每个 *Action,java 文件中的每个方法都对应一个action标签
+        -  action的name命名格式为“实体名_方法名（method）”，如“User_login”
+        -  其中，实体名首字母大写，方法名小写
+        -  result根据method返回的字符串，跳转到相应的界面上
+        -->
+
+        <!-- UserAction类 -->
+        <action name="User_login" class="com.action.UserAction" method="login">
+            <result name="login_success"></result>
+            <result name="login_failure"></result>
+        </action>
+
+    </package>
+</struts>
