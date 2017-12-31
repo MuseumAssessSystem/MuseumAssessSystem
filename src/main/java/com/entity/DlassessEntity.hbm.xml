@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.entity.DlassessEntity" table="dlassess" schema="museum_assess">
+        <id name="dlaid" column="dlaid"/>
+        <property name="year" column="year"/>
+        <property name="dlscore1" column="dlscore1"/>
+        <property name="dlscore2" column="dlscore2"/>
+        <property name="dlscore3" column="dlscore3"/>
+        <property name="dlscore4" column="dlscore4"/>
+        <property name="dlscore11" column="dlscore11"/>
+        <property name="dlscore12" column="dlscore12"/>
+        <property name="dlscore21" column="dlscore21"/>
+        <property name="dlscore22" column="dlscore22"/>
+        <property name="dlscore23" column="dlscore23"/>
+        <property name="dlscore31" column="dlscore31"/>
+        <property name="dlscore32" column="dlscore32"/>
+        <property name="dlscore41" column="dlscore41"/>
+        <property name="dlscore42" column="dlscore42"/>
+        <property name="dltotal" column="dltotal"/>
+    </class>
+</hibernate-mapping>

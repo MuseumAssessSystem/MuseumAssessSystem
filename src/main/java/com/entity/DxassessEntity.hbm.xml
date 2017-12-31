@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.entity.DxassessEntity" table="dxassess" schema="museum_assess">
+        <property name="dxaid" column="dxaid"/>
+        <property name="year" column="year"/>
+        <property name="dxscore1" column="dxscore1"/>
+        <property name="dxscore2" column="dxscore2"/>
+        <property name="dxscore3" column="dxscore3"/>
+        <property name="dxscore4" column="dxscore4"/>
+        <property name="dxscore5" column="dxscore5"/>
+        <property name="dxscore11" column="dxscore11"/>
+        <property name="dxscore12" column="dxscore12"/>
+        <property name="dxscore13" column="dxscore13"/>
+        <property name="dxscore21" column="dxscore21"/>
+        <property name="dxscore22" column="dxscore22"/>
+        <property name="dxscore31" column="dxscore31"/>
+        <property name="dxscore32" column="dxscore32"/>
+        <property name="dxscore33" column="dxscore33"/>
+        <property name="dxscore34" column="dxscore34"/>
+        <property name="dxscore41" column="dxscore41"/>
+        <property name="dxscore42" column="dxscore42"/>
+        <property name="dxscore43" column="dxscore43"/>
+        <property name="dxscore51" column="dxscore51"/>
+        <property name="dxscore52" column="dxscore52"/>
+        <property name="dxscore53" column="dxscore53"/>
+        <property name="dxtotal" column="dxtotal"/>
+    </class>
+</hibernate-mapping>
