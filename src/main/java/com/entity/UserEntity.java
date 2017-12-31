@@ -1,5 +1,7 @@
 package com.entity;
 
+import org.apache.catalina.User;
+
 import javax.persistence.*;
 
 /**
@@ -13,6 +15,13 @@ public class UserEntity {
     private String phone;
     private String email;
     private String password;
+    private int rid;
+
+    public UserEntity(){
+    }
+
+    public UserEntity(String uid){
+    }
 
     @Id
     @Column(name = "uid")
@@ -88,5 +97,13 @@ public class UserEntity {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
+    }
+
+    public int getRid() {
+        return rid;
+    }
+
+    public void setRid(int rid) {
+        this.rid = rid;
     }
 }

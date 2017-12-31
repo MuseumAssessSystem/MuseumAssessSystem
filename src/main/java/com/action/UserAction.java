@@ -12,7 +12,8 @@ public class UserAction extends ActionSupport{
     private String userName ;
     private String password;
 
-    public String excute(){         //处理登录请求的方法
+
+    public String login(){         //处理登录请求的方法
 
         return "";
     }
