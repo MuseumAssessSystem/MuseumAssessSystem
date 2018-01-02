@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Table(name = "dlassess", schema = "museum_assess", catalog = "")
 public class DlassessEntity {
     private int dlaid;
+    private int mid;
     private int year;
     private Double dlscore1;
     private Double dlscore2;
@@ -231,5 +232,11 @@ public class DlassessEntity {
         result = 31 * result + (dlscore42 != null ? dlscore42.hashCode() : 0);
         result = 31 * result + (dltotal != null ? dltotal.hashCode() : 0);
         return result;
+    }
+    public int getMid(){
+        return mid;
+    }
+    public void setMid(int mid){
+        this.mid=mid;
     }
 }

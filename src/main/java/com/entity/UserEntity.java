@@ -20,7 +20,8 @@ public class UserEntity {
     public UserEntity(){
     }
 
-    public UserEntity(String uid){
+    public UserEntity(int uid){
+        this.uid = uid;
     }
 
     @Id

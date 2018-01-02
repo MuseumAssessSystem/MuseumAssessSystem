@@ -11,7 +11,7 @@ public class ExpertEntity {
     private int eid;
     private String ename;
     private String description;
-
+    private int dxc1id;
     @Id
     @Column(name = "eid")
     public int getEid() {
@@ -63,4 +63,10 @@ public class ExpertEntity {
         result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
     }
+
+    public int getDxc1id(){
+        return dxc1id;
+    }
+    public void setDxc1id(int dxc1id){ this.dxc1id = dxc1id;}
+
 }

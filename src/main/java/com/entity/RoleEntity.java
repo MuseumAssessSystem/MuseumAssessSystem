@@ -11,6 +11,14 @@ public class RoleEntity {
     private int rid;
     private String rname;
 
+    public RoleEntity(){
+
+    }
+
+    public RoleEntity(int rid){
+        this.rid = rid;
+    }
+
     @Id
     @Column(name = "rid")
     public int getRid() {

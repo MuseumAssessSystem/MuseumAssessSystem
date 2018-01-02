@@ -1,9 +1,6 @@
 package com.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by 10922 on 2017/12/30.
@@ -13,6 +10,7 @@ import javax.persistence.Table;
 public class DxassessEntity {
     private int dxaid;
     private int year;
+    private int mid;
     private Double dxscore1;
     private Double dxscore2;
     private Double dxscore3;
@@ -35,7 +33,7 @@ public class DxassessEntity {
     private Double dxscore53;
     private Double dxtotal;
 
-    @Basic
+    @Id
     @Column(name = "dxaid")
     public int getDxaid() {
         return dxaid;
@@ -326,4 +324,10 @@ public class DxassessEntity {
         result = 31 * result + (dxtotal != null ? dxtotal.hashCode() : 0);
         return result;
     }
+
+    public int getMid() {
+        return mid;
+    }
+    public void setMid(int mid){this.mid = mid;}
+
 }

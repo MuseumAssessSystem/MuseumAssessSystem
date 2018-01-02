@@ -16,6 +16,6 @@ UserEntity.java -- UserDAO.java -- UserDAOImpl.java
 DAO类中的方法包括：
 boolean Add*Entity(*Entity **);
 boolean Delete*Entity(*Entity **);
-boolean Modify*Entity(*Entity **);
+boolean update*Entity(*Entity **);
 以及各种搜索方法（根据功能需求确定搜索键值和方法返回值），如：
-List<*Entity> query*Entity(String key);
+List<*Entity> get*Entity(String key);

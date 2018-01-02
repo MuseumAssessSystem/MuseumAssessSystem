@@ -2,7 +2,6 @@ package com.dao.impl;
 
 import com.dao.UserDAO;
 import com.entity.UserEntity;
-import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -21,8 +20,6 @@ import java.util.List;
 //出现Exception异常回滚
 @Repository("userDao") //进行注入
 public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
-    @Resource(name="sessionFactory")
-    private SessionFactory sessionFactory;
     @Resource(name="hibernateTemplate")
     private HibernateTemplate hibernateTemplate;
 

@@ -1,25 +1,17 @@
 package com.service;
 
-import com.dao.impl.UserDAOImpl;
 import com.entity.UserEntity;
 
+import java.util.List;
+
 /**
- * Created by 10922 on 2017/12/30.
+ * Created by 10922 on 2018/1/2.
  */
-public class UserService {
-
-    private UserDAOImpl userDAO;
-
-    public boolean checkLogin(UserEntity userEntity){
-
-        return true;
-    }
-
-    public void setUserDAO(UserDAOImpl userDAO) {
-        this.userDAO = userDAO;
-    }
-
-    public UserDAOImpl getUserDAO() {
-        return userDAO;
-    }
+public interface UserService {
+    boolean addUser(UserEntity userEntity);
+    String login(UserEntity userEntity);
+    List getAllUser();
+    List getUserById(int id);
+    boolean updateUser(UserEntity userEntity);
+    boolean deleteUser(int id);
 }
