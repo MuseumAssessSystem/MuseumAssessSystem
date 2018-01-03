@@ -1,39 +1,58 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-configuration PUBLIC
-        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-    <session-factory>
-        <!-- 配置Hibernate的基本属性 -->
-        <!-- 1.数据源配置到IOC容器中 -->
-        <!-- 2.关联的.hbm.xml也在IOC容器配置SessionFactory实例 -->
-        <!-- 3.配置Hibernate的基本属性：方言，SQL显示及格式化，生成数据表的策略以及二级缓存 -->
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
-        <property name="hibernate.show_sql">true</property>
-        <property name="hbm2ddl.auto">update</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/museum_assess</property>
-        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+  <session-factory>
+    <!--配置数据库的驱动程序，Hibernate在连接数据库时，需要用到数据库的驱动程序-->
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <!--设置数据库的连接url:jdbc:mysql://localhost/manage_system,其中localhost表示mysql服务器名称，此处为本机，manage_system是数据库名-->
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/museum_assess</property>
+    <!--连接数据库是用户名-->
+    <property name="hibernate.connection.username">root</property>
+    <!--连接数据库是密码-->
+    <property name="hibernate.connection.password">123456</property>
+    <!--数据库连接池的大小-->
+    <property name="hibernate.connection.pool.size">20</property>
+    <!--是否在后台显示Hibernate用到的SQL语句，开发时设置为true，便于差错，程序运行时可以在控制台显示Hibernate的执行Sql语句。项目部署后可以设置为false，提高运-->
+    <property name="hibernate.show_sql">true</property>
+    <!---->
+    <property name="hibernate.format_sql">true</property>
+    <!---->
+    <property name="hibernate.hbm2ddl.auto">update</property>
+    <!--jdbc.fetch_size是指Hibernate每次从数据库中取出并放到JDBC的Statement中的记录条数。Fetch Size设的越大，读数据库的次数越少，速度越快，Fetch Size越小，读数据库的次数越多，速度越慢-->
+    <!--<property name="jdbc.fetch_size">50</property>-->
+    <!--jdbc.batch_size是指Hibernate批量插入,删除和更新时每次操作的记录数。Batch Size越大，批量操作的向数据库发送Sql的次数越少，速度就越快，同样耗用内存就越大-->
+    <!--<property name="jdbc.batch_size">23</property>-->
+    <!--connection.useUnicode连接数据库时是否使用Unicode编码-->
+    <!--<property name="Connection.useUnicode">true</property>-->
+    <!--connection.characterEncoding连接数据库时数据的传输字符集编码方式-->
+    <!--<property name="connection.characterEncoding">utf8</property>-->
+    <!--hibernate.dialect 只是Hibernate使用的数据库方言,就是要用Hibernate连接那种类型的数据库服务器。-->
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect </property>
+    <!-- 用getCurrentSession来创建会话 -->
+    <property name="hibernate.current_session_context_class">thread</property>
 
-        <mapping class="com.entity.DlassessEntity"/>
-        <mapping resource="com/entity/DlassessEntity.hbm.xml"/>
-        <mapping class="com.entity.DxassessEntity"/>
-        <mapping resource="com/entity/DxassessEntity.hbm.xml"/>
-        <mapping class="com.entity.Dxcriteria1Entity"/>
-        <mapping resource="com/entity/Dxcriteria1Entity.hbm.xml"/>
-        <mapping resource="com/entity/ExpertEntity.hbm.xml"/>
-        <mapping class="com.entity.ExpertEntity"/>
-        <mapping class="com.entity.MuseumEntity"/>
-        <mapping resource="com/entity/MuseumEntity.hbm.xml"/>
-        <mapping resource="com/entity/PriviledgeEntity.hbm.xml"/>
-        <mapping class="com.entity.PriviledgeEntity"/>
-        <mapping class="com.entity.RoleEntity"/>
-        <mapping resource="com/entity/RoleEntity.hbm.xml"/>
-        <mapping class="com.entity.RpEntity"/>
-        <mapping resource="com/entity/RpEntity.hbm.xml"/>
-        <mapping class="com.entity.TotalassessEntity"/>
-        <mapping resource="com/entity/TotalassessEntity.hbm.xml"/>
-        <mapping class="com.entity.UserEntity"/>
-        <mapping resource="com/entity/UserEntity.hbm.xml"/>
 
-    </session-factory>
+    <mapping resource="DlassessEntity.hbm.xml"/>
+
+    <mapping resource="DxassessEntity.hbm.xml"/>
+
+    <mapping resource="Dxcriteria1Entity.hbm.xml"/>
+
+    <mapping resource="ExpertEntity.hbm.xml"/>
+
+    <mapping resource="MuseumEntity.hbm.xml"/>
+
+    <mapping resource="PriviledgeEntity.hbm.xml"/>
+
+    <mapping resource="RoleEntity.hbm.xml"/>
+
+    <mapping resource="RpEntity.hbm.xml"/>
+
+    <mapping resource="TotalassessEntity.hbm.xml"/>
+
+    <mapping resource="UserEntity.hbm.xml"/>
+
+  </session-factory>
 </hibernate-configuration>

@@ -1,27 +1,19 @@
 package com.dao.impl;
 
+import com.dao.BaseHibernateDAO;
 import com.dao.ExpertDAO;
 import com.entity.ExpertEntity;
-import org.hibernate.SessionFactory;
-import org.springframework.orm.hibernate3.HibernateTemplate;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import db.MyHibernateSessionFactory;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by 10922 on 2017/12/29.
  */
-@Transactional(rollbackFor = Exception.class)
-//出现Exception异常回滚
-@Repository("expertDao") //进行注入
-public class ExpertDAOImpl extends HibernateDaoSupport implements ExpertDAO{
-    @Resource(name="sessionFactory")
-    private SessionFactory sessionFactory;
-    @Resource(name="hibernateTemplate")
-    private HibernateTemplate hibernateTemplate;
+public class ExpertDAOImpl extends BaseHibernateDAO implements ExpertDAO{
 
     @Override
     public void addExpert(ExpertEntity expertEntity) {
@@ -30,7 +22,7 @@ public class ExpertDAOImpl extends HibernateDaoSupport implements ExpertDAO{
          * @Description:添加专家
          * @date 2018/1/1
          */
-        hibernateTemplate.saveOrUpdate(expertEntity);
+        super.add(expertEntity);
 
     }
 
@@ -41,7 +33,7 @@ public class ExpertDAOImpl extends HibernateDaoSupport implements ExpertDAO{
          * @Description:删除专家
          * @date 2018/1/1
          */
-        hibernateTemplate.delete(expertEntity);
+        super.delete(expertEntity);
 
     }
 
@@ -52,7 +44,7 @@ public class ExpertDAOImpl extends HibernateDaoSupport implements ExpertDAO{
          * @Description:修改专家信息
          * @date 2018/1/1
          */
-        hibernateTemplate.update(expertEntity);
+        super.update(expertEntity);
 
     }
 
@@ -64,24 +56,40 @@ public class ExpertDAOImpl extends HibernateDaoSupport implements ExpertDAO{
          * @date 2018/1/1
          */
         String sql;
+        Transaction tx=null;
+        List<ExpertEntity> expertEntities = new ArrayList<>();
+        try{
+            sql="select * from expert where 1=1";
 
-        sql="select * from expert where 1=1";
+            if(expertEntity.getEid()>0){
+                sql=sql+" and eid='"+expertEntity.getEid()+"'";
+            }
+            if(expertEntity.getEname()!=null && expertEntity.getEname()!=""){
+                sql = sql + " and ename = '" + expertEntity.getEname()+"'";
+            }
+            if(expertEntity.getDescription()!=null && expertEntity.getDescription()!=""){
+                sql=sql+" and description='"+expertEntity.getDescription()+"'";
+            }
+            if(expertEntity.getDxc1id()>0){
+                sql=sql+" and dxc1id='"+expertEntity.getDxc1id()+"'";
+            }
 
-        if(expertEntity.getEid()>0){
-            sql=sql+" and eid='"+expertEntity.getEid()+"'";
-        }
-        if(expertEntity.getEname()!=null && expertEntity.getEname()!=""){
-            sql = sql + " and ename = '" + expertEntity.getEname()+"'";
-        }
-        if(expertEntity.getDescription()!=null && expertEntity.getDescription()!=""){
-            sql=sql+" and description='"+expertEntity.getDescription()+"'";
-        }
-        if(expertEntity.getDxc1id()>0){
-            sql=sql+" and dxc1id='"+expertEntity.getDxc1id()+"'";
+            Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
+            expertEntities = session.createSQLQuery(sql).addEntity(ExpertEntity.class).list();
+            tx.commit();
+        }catch (Exception e) {
+            e.printStackTrace();
+            tx.commit();
+        } finally {
+            if (tx != null) {
+                tx = null;
+            }
         }
 
-        List<ExpertEntity> experts  = (List<ExpertEntity>) hibernateTemplate.find(sql);
-        return experts;
+
+
+        return expertEntities;
     }
 }
 

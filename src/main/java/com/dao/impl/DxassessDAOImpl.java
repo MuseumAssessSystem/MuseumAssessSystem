@@ -1,28 +1,19 @@
 package com.dao.impl;
 
+import com.dao.BaseHibernateDAO;
 import com.dao.DxassessDAO;
 import com.entity.DxassessEntity;
-import org.hibernate.SessionFactory;
-import org.springframework.orm.hibernate3.HibernateTemplate;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import db.MyHibernateSessionFactory;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by admin on 2018/1/1.
  */
-@Transactional(rollbackFor = Exception.class)
-//出现Exception异常回滚
-@Repository("dxassessDao") //进行注入
-public class DxassessDAOImpl extends HibernateDaoSupport implements DxassessDAO {
-    @Resource(name="sessionFactory")
-    private SessionFactory sessionFactory;
-    @Resource(name="hibernateTemplate")
-    private HibernateTemplate hibernateTemplate;
-
+public class DxassessDAOImpl extends BaseHibernateDAO implements DxassessDAO {
     @Override
     public void addDxassess(DxassessEntity dxassessEntity) {
         /**
@@ -30,7 +21,7 @@ public class DxassessDAOImpl extends HibernateDaoSupport implements DxassessDAO 
          * @Description:添加定性打分表
          * @date 2018/1/1
          */
-        hibernateTemplate.saveOrUpdate(dxassessEntity);
+        super.add(dxassessEntity);
     }
 
     @Override
@@ -40,7 +31,7 @@ public class DxassessDAOImpl extends HibernateDaoSupport implements DxassessDAO 
          * @Description:删除定性打分表
          * @date 2018/1/1
          */
-        hibernateTemplate.delete(dxassessEntity);
+        super.delete(dxassessEntity);
     }
 
     @Override
@@ -50,7 +41,7 @@ public class DxassessDAOImpl extends HibernateDaoSupport implements DxassessDAO 
          * @Description:修改定性打分表
          * @date 2018/1/1
          */
-        hibernateTemplate.update(dxassessEntity);
+        super.update(dxassessEntity);
     }
 
     @Override
@@ -61,20 +52,34 @@ public class DxassessDAOImpl extends HibernateDaoSupport implements DxassessDAO 
          * @date 2018/1/1
          */
         String sql;
+        Transaction tx=null;
+        List<DxassessEntity> dxassessEntities = new ArrayList<>();
+        try{
+            sql="select * from dxassess where 1=1";
 
-        sql="select * from dxassess where 1=1";
+            if(dxassessEntity.getDxaid()>0){
+                sql=sql+" and dxaid='"+dxassessEntity.getDxaid()+"'";
+            }
+            if(dxassessEntity.getYear()>0){
+                sql = sql + " and year = '" + dxassessEntity.getYear()+"'";
+            }
+            if(dxassessEntity.getMid()>0){
+                sql = sql + " and mid ='"+dxassessEntity.getMid()+"'";
+            }
 
-        if(dxassessEntity.getDxaid()>0){
-            sql=sql+" and dxaid='"+dxassessEntity.getDxaid()+"'";
+            Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
+            dxassessEntities = session.createSQLQuery(sql).addEntity(DxassessEntity.class).list();
+            tx.commit();
+        }catch (Exception e) {
+            e.printStackTrace();
+            tx.commit();
+        } finally {
+            if (tx != null) {
+                tx = null;
+            }
         }
-        if(dxassessEntity.getYear()>0){
-            sql = sql + " and year = '" + dxassessEntity.getYear()+"'";
-        }
-        if(dxassessEntity.getMid()>0){
-            sql = sql + " and mid ='"+dxassessEntity.getMid()+"'";
-        }
-        List<DxassessEntity> dxassesslist  = (List<DxassessEntity>) hibernateTemplate.find(sql);
-        return dxassesslist;
+        return dxassessEntities;
 
     }
 }

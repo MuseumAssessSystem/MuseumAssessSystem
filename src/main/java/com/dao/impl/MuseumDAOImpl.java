@@ -1,27 +1,19 @@
 package com.dao.impl;
 
+import com.dao.BaseHibernateDAO;
 import com.dao.MuseumDAO;
 import com.entity.MuseumEntity;
-import org.hibernate.SessionFactory;
-import org.springframework.orm.hibernate3.HibernateTemplate;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import db.MyHibernateSessionFactory;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by X on 2018/1/1.
  */
-@Transactional(rollbackFor = Exception.class)
-
-@Repository("museumDAO")
-public class MuseumDAOImpl extends HibernateDaoSupport implements MuseumDAO{
-    @Resource(name = "sessionFactory")
-    private SessionFactory sessionFactory;
-    @Resource(name = "hibernateTemplate")
-    private HibernateTemplate hibernateTemplate;
+public class MuseumDAOImpl extends BaseHibernateDAO implements MuseumDAO{
 
     @Override
     public void addMuseum(MuseumEntity museumEntity) {
@@ -30,7 +22,7 @@ public class MuseumDAOImpl extends HibernateDaoSupport implements MuseumDAO{
         *@Author:xyj
         *@Date:15:51 2018/1/1
         **/
-        hibernateTemplate.saveOrUpdate(museumEntity);
+        super.add(museumEntity);
     }
 
     @Override
@@ -40,7 +32,7 @@ public class MuseumDAOImpl extends HibernateDaoSupport implements MuseumDAO{
         *@Author:xyj
         *@Date:15:53 2018/1/1
         **/
-        hibernateTemplate.delete(museumEntity);
+        super.delete(museumEntity);
     }
 
     @Override
@@ -50,7 +42,7 @@ public class MuseumDAOImpl extends HibernateDaoSupport implements MuseumDAO{
         *@Author:xyj
         *@Date:15:55 2018/1/1
         **/
-        hibernateTemplate.update(museumEntity);
+        super.update(museumEntity);
     }
 
     @Override
@@ -61,24 +53,40 @@ public class MuseumDAOImpl extends HibernateDaoSupport implements MuseumDAO{
         *@Date:15:56 2018/1/1
         **/
         String sql;
-        sql="select *  from museum where 1=1";
 
-        if(museumEntity.getMid()>0){
-            sql=sql+"and mid="+museumEntity.getMid();
+        Transaction tx=null;
+        List<MuseumEntity> museumEntities = new ArrayList<>();
+        try{
+            sql="select *  from museum where 1=1";
+
+            if(museumEntity.getMid()>0){
+                sql=sql+"and mid="+museumEntity.getMid();
+            }
+            if(museumEntity.getMname()!=null && museumEntity.getMname()!=""){
+                sql=sql+"and mname="+museumEntity.getMname();
+            }
+            if(museumEntity.getMtype()!=null && museumEntity.getMtype()!=""){
+                sql=sql+"and mtype="+museumEntity.getMtype();
+            }
+            if(museumEntity.getMclass()!=null && museumEntity.getMclass()!=""){
+                sql=sql+"and mclass="+museumEntity.getMclass();
+            }
+            if(museumEntity.getDescription()!=null && museumEntity.getDescription()!=""){
+                sql=sql+"and description="+museumEntity.getDescription();
+            }
+
+            Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
+            museumEntities = session.createSQLQuery(sql).addEntity(MuseumEntity.class).list();
+            tx.commit();
+        }catch (Exception e) {
+            e.printStackTrace();
+            tx.commit();
+        } finally {
+            if (tx != null) {
+                tx = null;
+            }
         }
-        if(museumEntity.getMname()!=null && museumEntity.getMname()!=""){
-            sql=sql+"and mname="+museumEntity.getMname();
-        }
-        if(museumEntity.getMtype()!=null && museumEntity.getMtype()!=""){
-            sql=sql+"and mtype="+museumEntity.getMtype();
-        }
-        if(museumEntity.getMclass()!=null && museumEntity.getMclass()!=""){
-            sql=sql+"and mclass="+museumEntity.getMclass();
-        }
-        if(museumEntity.getDescription()!=null && museumEntity.getDescription()!=""){
-            sql=sql+"and description="+museumEntity.getDescription();
-        }
-        List<MuseumEntity> museumEntities =(List<MuseumEntity>) hibernateTemplate.find(sql);
         return museumEntities;
     }
 }

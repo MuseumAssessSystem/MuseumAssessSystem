@@ -6,7 +6,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
-
+/**
+ * Created by Martin on 2017/4/7.
+ */
 public class MyHibernateSessionFactory {
     //指定 hibernate 配置文件路径
     private static String CONFIG_FILE_LOCATION = "/hibernate.cfg.xml";

@@ -1,13 +1,13 @@
 package com.dao.impl;
 
+import com.dao.BaseHibernateDAO;
 import com.dao.UserDAO;
 import com.entity.UserEntity;
-import org.springframework.orm.hibernate3.HibernateTemplate;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import db.MyHibernateSessionFactory;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,13 +16,9 @@ import java.util.List;
 /*
  * 接口实现的快捷方式 ALT + INSERT
  */
-@Transactional(rollbackFor = Exception.class)
-//出现Exception异常回滚
-@Repository("userDao") //进行注入
-public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
-    @Resource(name="hibernateTemplate")
-    private HibernateTemplate hibernateTemplate;
+public class UserDAOImpl extends BaseHibernateDAO implements UserDAO {
 
+    //private HibernateTemplate hibernateTemplate;
 
     @Override
     public void addUser(UserEntity userEntity) {
@@ -34,7 +30,7 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
          *@创建时间 2017/12/31
          *@修改人和其它时间
         **/
-        hibernateTemplate.saveOrUpdate(userEntity);
+        super.add(userEntity);
     }
 
     @Override
@@ -47,7 +43,7 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
          *@创建时间 2017/12/31
          *@修改人和其它时间
         **/
-        hibernateTemplate.delete(userEntity);
+        super.delete(userEntity);
     }
 
     @Override
@@ -60,7 +56,7 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
          *@创建时间 2017/12/31
          *@修改人和其它时间
         **/
-        hibernateTemplate.update(userEntity);
+        super.update(userEntity);
     }
 
     @Override
@@ -74,24 +70,36 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
          *@修改人和其它时间
         **/
         String sql;
+        Transaction tx=null;
+        List<UserEntity> users = new ArrayList<>();
+        try{
+            sql="select * from user where 1=1";
 
-        sql="select * from user where 1=1";
+            if(userEntity.getUid()>0){      //
+                sql=sql+" and uid='"+userEntity.getUid()+"'";
+            }
+            if(userEntity.getUname()!=null && userEntity.getUname()!=""){
+                sql = sql + " and uname = '" + userEntity.getUname()+"'";
+            }
+            if(userEntity.getPassword()!=null && userEntity.getPassword()!=""){
+                sql=sql+" and password='"+userEntity.getPassword()+"'";
+            }
+            if(userEntity.getRid()>0){
+                sql=sql+" and utype='"+userEntity.getRid()+"'";
+            }
 
-        if(userEntity.getUid()>0){      //
-            sql=sql+" and uid='"+userEntity.getUid()+"'";
+            Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
+            users = session.createSQLQuery(sql).addEntity(UserEntity.class).list();
+            tx.commit();
+        }catch (Exception e) {
+            e.printStackTrace();
+            tx.commit();
+        } finally {
+            if (tx != null) {
+                tx = null;
+            }
         }
-        if(userEntity.getUname()!=null && userEntity.getUname()!=""){
-            sql = sql + " and uname = '" + userEntity.getUname()+"'";
-        }
-        if(userEntity.getPassword()!=null && userEntity.getPassword()!=""){
-            sql=sql+" and password='"+userEntity.getPassword()+"'";
-        }
-        if(userEntity.getRid()>0){
-            sql=sql+" and utype='"+userEntity.getRid()+"'";
-        }
-
-        List<UserEntity> users  = (List<UserEntity>) hibernateTemplate.find(sql);
         return users;
     }
-
 }

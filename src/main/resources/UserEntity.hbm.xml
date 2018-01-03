@@ -6,6 +6,7 @@
 
     <class name="com.entity.UserEntity" table="user" schema="museum_assess">
         <id name="uid" column="uid"/>
+        <property name="rid" column="rid" type="java.lang.Integer"/>
         <property name="uname" column="uname"/>
         <property name="phone" column="phone"/>
         <property name="email" column="email"/>

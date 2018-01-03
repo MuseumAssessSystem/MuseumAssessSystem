@@ -1,26 +1,19 @@
 package com.dao.impl;
 
+import com.dao.BaseHibernateDAO;
 import com.dao.DlassessDAO;
 import com.entity.DlassessEntity;
-import org.hibernate.SessionFactory;
-import org.springframework.orm.hibernate3.HibernateTemplate;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import db.MyHibernateSessionFactory;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by X on 2018/1/1.
  */
-@Transactional(rollbackFor = Exception.class)
-@Repository("dlassessDAO")
-public class DlassessDAOImpl extends HibernateDaoSupport implements DlassessDAO{
-    @Resource(name = "sessionFactory")
-    private SessionFactory sessionFactory;
-    @Resource(name = "hibernateTemplate")
-    private HibernateTemplate hibernateTemplate;
+public class DlassessDAOImpl extends BaseHibernateDAO implements DlassessDAO{
 
     @Override
     public void addDlassess(DlassessEntity dlassessEntity) {
@@ -29,7 +22,7 @@ public class DlassessDAOImpl extends HibernateDaoSupport implements DlassessDAO{
         *@Author:xyj
         *@Date:17:48 2018/1/1
         **/
-        hibernateTemplate.saveOrUpdate(dlassessEntity);
+        super.add(dlassessEntity);
     }
 
     @Override
@@ -39,7 +32,7 @@ public class DlassessDAOImpl extends HibernateDaoSupport implements DlassessDAO{
         *@Author:xyj
         *@Date:17:50 2018/1/1
         **/
-        hibernateTemplate.delete(dlassessEntity);
+        super.delete(dlassessEntity);
     }
 
     @Override
@@ -49,7 +42,7 @@ public class DlassessDAOImpl extends HibernateDaoSupport implements DlassessDAO{
         *@Author:xyj
         *@Date:17:51 2018/1/1
         **/
-        hibernateTemplate.update(dlassessEntity);
+        super.update(dlassessEntity);
     }
 
     @Override
@@ -59,19 +52,35 @@ public class DlassessDAOImpl extends HibernateDaoSupport implements DlassessDAO{
         *@Author:xyj
         *@Date:17:52 2018/1/1
         **/
-        String sql;
-        sql="select * from dlassess where 1=1";
 
-        if(dlassessEntity.getDlaid()>0){
-            sql=sql+"and dlaid="+dlassessEntity.getDlaid();
+        String sql;
+        Transaction tx=null;
+        List<DlassessEntity> dlassessEntities = new ArrayList<>();
+        try{
+            sql="select * from dlassess where 1=1";
+
+            if(dlassessEntity.getDlaid()>0){
+                sql=sql+"and dlaid="+dlassessEntity.getDlaid();
+            }
+            if(dlassessEntity.getMid()>0){
+                sql=sql+"and mid="+dlassessEntity.getMid();
+            }
+            if(dlassessEntity.getYear()>0){
+                sql=sql+"and year="+dlassessEntity.getYear();
+            }
+
+            Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
+            dlassessEntities = session.createSQLQuery(sql).addEntity(DlassessEntity.class).list();
+            tx.commit();
+        }catch (Exception e) {
+            e.printStackTrace();
+            tx.commit();
+        } finally {
+            if (tx != null) {
+                tx = null;
+            }
         }
-        if(dlassessEntity.getMid()>0){
-            sql=sql+"and mid="+dlassessEntity.getMid();
-        }
-        if(dlassessEntity.getYear()>0){
-            sql=sql+"and year="+dlassessEntity.getYear();
-        }
-        List<DlassessEntity> dlassessEntities =(List<DlassessEntity>) hibernateTemplate.find(sql);
         return dlassessEntities;
     }
 }

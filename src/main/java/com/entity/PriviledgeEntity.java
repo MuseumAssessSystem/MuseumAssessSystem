@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by 10922 on 2017/12/30.
  */
 @Entity
-@Table(name = "priviledge", schema = "museum_assess", catalog = "")
+@Table(name = "priviledge", schema = "museum_assess")
 public class PriviledgeEntity {
     private int pid;
     private String pname;

@@ -4,19 +4,16 @@ import com.entity.UserEntity;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.service.UserService;
+import com.service.UserServiceImpl;
 
-import javax.annotation.Resource;
 import java.util.Map;
 
 /**
  * Created by 10922 on 2017/12/30.
  */
 public class UserAction extends ActionSupport{
-    @Resource
-    private UserService userService;
-    private UserEntity userEntity;
     private boolean bool;
-    private String userName ;
+    private String uname ;
     private String password;
 
 
@@ -29,24 +26,36 @@ public class UserAction extends ActionSupport{
          *@创建时间 2018/1/2
          *@修改人和其它时间
         **/
-        Map session = ActionContext.getContext().getSession();
-        // session.put("rname",rname);
-        this.userService.login(new UserEntity());
-        return "";
+       // Map session = ActionContext.getContext().getSession();
+        Map params = ActionContext.getContext().getParameters();
+        uname = ((String[]) params.get("uname"))[0];
+        password = ((String[]) params.get("password"))[0];
+
+        System.out.println("uname " + uname);
+        System.out.println("password " + password);
+
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUname(uname);
+        userEntity.setPassword(password);
+
+
+        System.out.println(userEntity.getUname());
+        System.out.println(userEntity.getPassword());
+
+        if(userEntity==null)
+            System.out.println("userEntity is null");
+        UserService userService = new UserServiceImpl();
+        String rname = userService.login(userEntity);
+        //session.put("rname",rname);
+        if(rname=="error")
+        return "login_failure";
+        else
+            return "login_success";
     }
 
     public void validate(){         //验证用户名和密码的有效性
         // 用户名不能为空，长度**位
 
         // 密码不能为空，长度**位
-
-    }
-
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-
-    public UserService getUserService() {
-        return userService;
     }
 }

@@ -1,6 +1,5 @@
 package com.entity;
 
-import org.apache.catalina.User;
 
 import javax.persistence.*;
 
@@ -8,7 +7,7 @@ import javax.persistence.*;
  * Created by 10922 on 2017/12/30.
  */
 @Entity
-@Table(name = "user", schema = "museum_assess", catalog = "")
+@Table(name = "user", schema = "museum_assess")
 public class UserEntity {
     private int uid;
     private String uname;

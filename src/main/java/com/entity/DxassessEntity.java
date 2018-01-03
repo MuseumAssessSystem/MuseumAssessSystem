@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by 10922 on 2017/12/30.
  */
 @Entity
-@Table(name = "dxassess", schema = "museum_assess", catalog = "")
+@Table(name = "dxassess", schema = "museum_assess")
 public class DxassessEntity {
     private int dxaid;
     private int year;

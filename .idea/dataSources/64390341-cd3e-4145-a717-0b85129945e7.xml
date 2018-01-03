@@ -383,82 +383,114 @@ pid</ColNames>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="100" parent="14" name="p_rp">
+    <column id="100" parent="14" name="rpid">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <index id="101" parent="14" name="p_rp">
       <ColNames>pid</ColNames>
     </index>
-    <index id="101" parent="14" name="r_rp">
+    <index id="102" parent="14" name="r_rp">
       <ColNames>rid</ColNames>
     </index>
-    <foreign-key id="102" parent="14" name="r_rp">
+    <index id="103" parent="14" name="rp_rpid_uindex">
+      <ColNames>rpid</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="104" parent="14" name="PRIMARY">
+      <ColNames>rpid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="105" parent="14" name="rp_rpid_uindex">
+      <ColNames>rpid</ColNames>
+      <UnderlyingIndexName>rp_rpid_uindex</UnderlyingIndexName>
+    </key>
+    <foreign-key id="106" parent="14" name="r_rp">
       <ColNames>rid</ColNames>
       <RefSchemaName>museum_assess</RefSchemaName>
       <RefTableName>role</RefTableName>
       <RefColNames>rid</RefColNames>
     </foreign-key>
-    <foreign-key id="103" parent="14" name="p_rp">
+    <foreign-key id="107" parent="14" name="p_rp">
       <ColNames>pid</ColNames>
       <RefSchemaName>museum_assess</RefSchemaName>
       <RefTableName>priviledge</RefTableName>
       <RefColNames>pid</RefColNames>
     </foreign-key>
-    <column id="104" parent="15" name="taid">
+    <column id="108" parent="15" name="taid">
       <Position>1</Position>
       <DataType>int(8)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="105" parent="15" name="mid">
+    <column id="109" parent="15" name="mid">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="106" parent="15" name="tscore">
+    <column id="110" parent="15" name="tscore">
       <Position>3</Position>
       <DataType>double|0</DataType>
     </column>
-    <index id="107" parent="15" name="t_m">
+    <index id="111" parent="15" name="t_m">
       <ColNames>mid</ColNames>
     </index>
-    <foreign-key id="108" parent="15" name="t_m">
+    <index id="112" parent="15" name="totalassess_taid_uindex">
+      <ColNames>taid</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="113" parent="15" name="PRIMARY">
+      <ColNames>taid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="114" parent="15" name="totalassess_taid_uindex">
+      <ColNames>taid</ColNames>
+      <UnderlyingIndexName>totalassess_taid_uindex</UnderlyingIndexName>
+    </key>
+    <foreign-key id="115" parent="15" name="t_m">
       <ColNames>mid</ColNames>
       <RefSchemaName>museum_assess</RefSchemaName>
       <RefTableName>museum</RefTableName>
       <RefColNames>mid</RefColNames>
     </foreign-key>
-    <column id="109" parent="16" name="uid">
+    <column id="116" parent="16" name="uid">
       <Position>1</Position>
       <DataType>int(4)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="110" parent="16" name="uname">
+    <column id="117" parent="16" name="uname">
       <Position>2</Position>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="111" parent="16" name="rid">
+    <column id="118" parent="16" name="rid">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="112" parent="16" name="phone">
+    <column id="119" parent="16" name="phone">
       <Position>4</Position>
       <DataType>char(11)|0</DataType>
     </column>
-    <column id="113" parent="16" name="email">
+    <column id="120" parent="16" name="email">
       <Position>5</Position>
       <DataType>varchar(40)|0</DataType>
     </column>
-    <column id="114" parent="16" name="password">
+    <column id="121" parent="16" name="password">
       <Position>6</Position>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="115" parent="16" name="r_u">
+    <index id="122" parent="16" name="r_u">
       <ColNames>rid</ColNames>
     </index>
-    <key id="116" parent="16" name="PRIMARY">
+    <key id="123" parent="16" name="PRIMARY">
       <ColNames>uid</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="117" parent="16" name="r_u">
+    <foreign-key id="124" parent="16" name="r_u">
       <ColNames>rid</ColNames>
       <RefSchemaName>museum_assess</RefSchemaName>
       <RefTableName>role</RefTableName>

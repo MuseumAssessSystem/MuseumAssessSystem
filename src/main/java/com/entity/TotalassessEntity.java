@@ -9,10 +9,11 @@ import javax.persistence.Table;
  * Created by 10922 on 2017/12/30.
  */
 @Entity
-@Table(name = "totalassess", schema = "museum_assess", catalog = "")
+@Table(name = "totalassess", schema = "museum_assess")
 public class TotalassessEntity {
     private Integer taid;
     private Double tscore;
+    private Integer mid;
 
     @Basic
     @Column(name = "taid")
@@ -52,5 +53,13 @@ public class TotalassessEntity {
         int result = taid != null ? taid.hashCode() : 0;
         result = 31 * result + (tscore != null ? tscore.hashCode() : 0);
         return result;
+    }
+
+    public Integer getMid() {
+        return mid;
+    }
+
+    public void setMid(Integer mid) {
+        this.mid = mid;
     }
 }

@@ -21,5 +21,6 @@
         <property name="dlscore41" column="dlscore41"/>
         <property name="dlscore42" column="dlscore42"/>
         <property name="dltotal" column="dltotal"/>
+        <property name="mid" column="mid" type="java.lang.Integer"/>
     </class>
 </hibernate-mapping>

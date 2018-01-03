@@ -5,7 +5,7 @@
 <hibernate-mapping>
 
     <class name="com.entity.DxassessEntity" table="dxassess" schema="museum_assess">
-        <property name="dxaid" column="dxaid"/>
+        <id name="dxaid" column="dxaid"/>
         <property name="year" column="year"/>
         <property name="dxscore1" column="dxscore1"/>
         <property name="dxscore2" column="dxscore2"/>
@@ -28,5 +28,6 @@
         <property name="dxscore52" column="dxscore52"/>
         <property name="dxscore53" column="dxscore53"/>
         <property name="dxtotal" column="dxtotal"/>
+        <property name="mid" column="mid" type="java.lang.Integer"/>
     </class>
 </hibernate-mapping>

@@ -5,7 +5,8 @@
 <hibernate-mapping>
 
     <class name="com.entity.TotalassessEntity" table="totalassess" schema="museum_assess">
-        <property name="taid" column="taid"/>
+        <id name="taid" column="taid"/>
         <property name="tscore" column="tscore"/>
+        <property name="mid" column="mid" type="java.lang.Integer"/>
     </class>
 </hibernate-mapping>
