@@ -1,0 +1,241 @@
+/*导航部分*/
+.page-wrapper{
+	width: 100%;
+	background: #2f4050;
+	position: relative;
+}
+.navbar{
+	width: 100px;
+	position: fixed;
+	text-align: center;
+}
+.navbar img{
+	width: 70px;
+	height:50px;
+	margin: 20px auto;
+}
+.navbar ul li{
+	position: relative;
+}
+.navbar ul li a{
+	display: block;
+	padding: 20px 10px;
+	color:#FFF;
+	line-height: 20px;
+	letter-spacing: 1px;
+}
+.navbar ul li a.active{
+	background: #000;
+}
+.navbar ul li a.active:before{
+	content: "";
+	display: inline-block;
+	width: 5px;
+	height: 60px;
+	background: #FFF;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.navbar ul li a:hover{
+	background: #000;
+}
+.navbar .sub-menu .sub{
+	display: none;
+	font-size: 14px;
+}
+/*主体部分*/
+.content-wrap{
+	margin-left: 100px;
+	min-height: 912px;
+	background: #F1F2F3;
+}
+/*主体头部*/
+.header{
+	width: 100%;
+	height: 50px;
+	background: #cfd9df;
+	background: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+	position: relative;
+	padding:0 20px;
+}
+.header span{
+	line-height: 50px;
+	font-size: 20px;
+	letter-spacing: 1px;
+	display: inline-block;
+}
+.header .header-btn{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	letter-spacing: -5px;
+}
+.header .header-btn a{
+	display: inline-block;
+	height: 25px;
+	padding: 0 10px;
+	text-align: center;
+	line-height: 25px;
+	font-size: 14px;
+	letter-spacing: 0px;
+}
+.header .header-btn a:hover{
+	opacity: 0.6;
+}
+.header .header-btn .user-btn{
+	border-right: 1px solid #000;
+}
+/*主体内容*/
+.container-wrap{
+	padding: 20px 40px;
+	min-height: 500px;
+    position: relative;
+}
+.container-wrap .container{
+	position: relative;
+	background: #FFF;
+	min-height: 100px;
+	box-shadow: 0 2px 25px rgba(0,0,0,0.15);
+	border-radius: 5px;
+	padding: 30px 20px;
+	margin-bottom: 20px;
+}
+
+/*标题*/
+h1{
+	font-size: 20px;
+}
+/*搜索*/
+.search{
+    margin: 20px 0;
+}
+.search form{
+    position: relative;
+}
+.search input{
+    box-sizing: border-box;
+    padding: 5px;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #000;
+    background: transparent;
+}
+.search button{
+    position: absolute;
+    background: #000;
+    border: 1px solid #000;
+    border-radius: 0 5px 5px 0;
+}
+.search button:before {
+    content: "搜索";
+    font-size: 14px;
+    color: #fff;
+}
+.search select{
+    border:1px solid #000;
+    -webkit-appearance: none;
+    padding: 2px 20px;
+    vertical-align: middle;
+}
+/*表格上按钮*/
+.museum-btns{
+    overflow: hidden;
+}
+.museum-btn{
+    margin-bottom: 5px;
+    text-align: center;
+    display: inline-block;
+    float: right;
+    margin-left: 10px;
+}
+.museum-btn a{
+    display: block;
+    border-radius: 2px;
+    padding: 0 5px;
+    height: 20px;
+    font-size: 14px;
+    line-height: 20px;
+    background-color: #000;
+    color: #fff;
+}
+/*表格*/
+.table{
+	width: 100%;
+}
+.table ul{
+	letter-spacing: -4px;
+}
+.table ul li{
+	display: inline-block;
+	min-height: 25px;
+	line-height: 25px;
+	letter-spacing: 2px;
+	text-align: center;
+	vertical-align: middle;
+}
+.table .table-head{
+	background: linear-gradient(-270deg,rgba(203,225,243,.3) 0,#cbe1f3 100%);
+	font-weight: bold;
+	border-radius: 2px 2px 0 0;
+}
+.table .table-head li{
+	padding: 2px 0;
+}
+
+.table .table-body{
+	min-height: 100px;
+	max-height: 500px;
+	overflow: auto;
+	background: #f9fafc;
+	font-size: 14px;
+	border-radius: 0 0 5px 5px;
+}
+.table .body-item li a{
+    display: inline-block;
+    border-right: 1px solid #000;
+}
+.table .body-item li a:last-child{
+    border:none;
+}
+.table .table-body ul:nth-child(odd){
+	background: #fff;
+}
+/*弹窗*/
+.pop-up{
+	display: none;
+	width: 500px;
+    height: auto;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 200px;
+	margin: 0 auto;
+	background: #f9fafc;
+	padding: 10px 0;
+	border-radius: 5px;
+	border: 1px solid #f1f2f3;
+    z-index: 11;
+}
+.pop-up h2{
+	text-align: center;
+	margin-bottom: 10px;
+}
+.pop-up tr{
+	height: 30px;
+}
+.pop-up td{
+	padding: 0 10px;
+	line-height: 30px;
+	vertical-align: top;
+}
+.mask{
+    display: none;
+    width: 100%;
+    height: 912px;
+    z-index: 10;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: #000;
+    opacity: 0.1;
+}

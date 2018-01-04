@@ -11,12 +11,19 @@
         -  其中，实体名首字母大写，方法名小写
         -  result根据method返回的字符串，跳转到相应的界面上
         -->
+
     <package name="default" namespace="/" extends="struts-default">
         <!-- UserAction类 -->
-        <action name="User_login" class="com.action.UserAction" method="login">
+        <action name="UserAction_login" class="com.action.UserAction" method="login">
             <result name="login_success">/view/success.jsp</result>
             <result name="login_failure">/view/error.jsp</result>
         </action>
 
+
+        <!-- UploadAction类-->
+
+        <action name="UploadAction_upload" class="com.action.UploadAction" method="upload">
+            <result name=""></result>
+        </action>
     </package>
 </struts>

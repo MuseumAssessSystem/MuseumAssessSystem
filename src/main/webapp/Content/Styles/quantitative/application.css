@@ -1,0 +1,29 @@
+.search form{
+    height: 32px;
+}
+.search input{
+    left: 0;
+    top: 0;
+    height: 30px;
+}
+.search button{
+    top: 0;
+    width: 50px;
+    height: 30px;
+}
+.search select{
+    height: 30px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    margin-left: -5px;
+}
+.application-table ul li:nth-child(even){
+     width: 15%;
+ }
+.application-table ul li:nth-child(odd){
+    width: 30%;
+}
+.application-table ul li:first-child{
+    width: 10%;
+}

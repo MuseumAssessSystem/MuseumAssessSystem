@@ -1,0 +1,70 @@
+.search form{
+    height: 32px;
+}
+.search input{
+    left: 0;
+    top: 0;
+    height: 30px;
+}
+.search button{
+    top: 0;
+    width: 50px;
+    height: 30px;
+}
+
+#search-by-year select{
+    margin-left: 20px;
+    height: 25px;
+}
+#search-by-year button{
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.museum-name-table{
+    margin-bottom: 100px;
+}
+.museum-name-table ul li:nth-child(1){
+    width: 6%;
+}
+.museum-name-table ul li:nth-child(2){
+    width: 13%;
+}
+.museum-name-table ul li:nth-child(3){
+    width: 17%;
+}
+.museum-name-table ul li:nth-child(4){
+    width: 17%;
+}
+.museum-name-table ul li:nth-child(5){
+    width: 30%;
+}
+.museum-name-table ul li:nth-child(6){
+    width: 17%;
+}
+
+.museum-year-table ul li:nth-child(1){
+    width: 10%
+}
+.museum-year-table ul li:nth-child(n+2){
+    width: 30%;
+}
+
+.pop-up tr td:nth-child(1){
+    background: #f1f2f3;
+    text-align: right;
+    width: 50%;
+}
+.pop-up tr td:nth-child(2){
+    background: #fff;
+    text-align: left;
+    width: 50%;
+}
+.pop-up button{
+    display: block;
+    margin: 20px auto 0;
+}
+#museumAlt button{
+    float: right;
+    margin-right: 5px;
+}
