@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: yve
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <title>博物馆评估管理系统</title>
 
 <link rel="stylesheet" href="/Content/Styles/common/reset.css">

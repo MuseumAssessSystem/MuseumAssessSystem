@@ -13,5 +13,5 @@ public interface RoleDAO {
     void addRole(RoleEntity roleEntity);
     void deleteRole(RoleEntity roleEntity);
     void updateRole(RoleEntity roleEntity);
-    List getRole(RoleEntity roleEntity);
+    List<RoleEntity> getRole(RoleEntity roleEntity);
 }

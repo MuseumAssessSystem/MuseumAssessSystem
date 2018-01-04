@@ -15,7 +15,7 @@
     <package name="default" namespace="/" extends="struts-default">
         <!-- UserAction类 -->
         <action name="UserAction_login" class="com.action.UserAction" method="login">
-            <result name="login_success">/view/success.jsp</result>
+            <result name="login_success">/view/Home.jsp</result>
             <result name="login_failure">/view/error.jsp</result>
         </action>
 

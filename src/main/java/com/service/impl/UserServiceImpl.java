@@ -39,7 +39,11 @@ public class UserServiceImpl implements UserService{
         int rid = users.get(0).getRid();
         RoleDAOImpl roleDAO = new RoleDAOImpl();
         List<RoleEntity> roles = roleDAO.getRole(new RoleEntity(rid));
-        if(roles.size()!=1)
+        if(roles==null){
+            System.out.println("roles is null");
+            return "error";
+        }
+        else if(roles.size()!=1)
             return "error";
         else
             return roles.get(0).getRname();

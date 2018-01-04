@@ -3,6 +3,8 @@ package com.dao.impl;
 import com.dao.BaseHibernateDAO;
 import com.dao.RoleDAO;
 import com.entity.RoleEntity;
+import db.MyHibernateSessionFactory;
+import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.ArrayList;
@@ -30,7 +32,7 @@ public class RoleDAOImpl extends BaseHibernateDAO implements RoleDAO{
     }
 
     @Override
-    public List getRole(RoleEntity roleEntity) {
+    public List<RoleEntity> getRole(RoleEntity roleEntity) {
         String sql;
         Transaction tx = null;
         List<RoleEntity> roleEntities = new ArrayList<>();
@@ -45,6 +47,11 @@ public class RoleDAOImpl extends BaseHibernateDAO implements RoleDAO{
                 sql = sql + " and rname = '" + roleEntity.getRname()+"'";
             }
 
+            Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
+            roleEntities = session.createSQLQuery(sql).addEntity(RoleEntity.class).list();
+            tx.commit();
+
         }catch (Exception e){
             e.printStackTrace();
             tx.commit();
@@ -55,6 +62,6 @@ public class RoleDAOImpl extends BaseHibernateDAO implements RoleDAO{
         }
 
 
-        return null;
+        return roleEntities;
     }
 }

@@ -9,7 +9,6 @@
 <head>
     <title>博物馆评估管理系统</title>
     <link rel="stylesheet" href="/Content/Styles/common/reset.css">
-    <
     <link rel="stylesheet" href="/Content/Library/supersized.css">
     <link rel="stylesheet" href="/Content/Styles/index.css">
 
@@ -21,10 +20,11 @@
 <div class="page-container">
     <h1>Login</h1>
     <form action="UserAction_login" method="post">
-        <input type="text" name="username" class="username" placeholder="Username">
-        <input type="password" name="password" class="password" placeholder="Password">
+        <input type="text" name="uname" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
         <button type="submit">Login</button>
         <div class="error"></div>
     </form>
+</div>
 </body>
 </html>

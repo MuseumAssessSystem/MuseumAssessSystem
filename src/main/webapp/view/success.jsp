@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: 10922
@@ -12,5 +13,6 @@
 </head>
 <body>
     login success!
+    <s:property value="#rname"/>
 </body>
 </html>
