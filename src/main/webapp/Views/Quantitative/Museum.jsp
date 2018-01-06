@@ -44,7 +44,7 @@
                 </div>
                 <div class="museum-btns">
                     <div class="museum-btn add-museum">
-                        <a href="#">添加博物馆</a>
+                        <a href="#" class="museum-add">添加博物馆</a>
                     </div>
                     <div class="museum-btn year-museum">
                         <a href="#search-by-year">各年份参评单位</a>
@@ -67,8 +67,8 @@
                             <li>省级及省级以上</li>
                             <li>2007，2008，2009，2010，2011，2012，2013</li>
                             <li>
-                                <a href="javascript:void(0)" class="museum-details" onclick="$('#museumDetails,.mask').show();">详细信息</a>
-                                <a href="javascript:void(0)" class="museum-alt" onclick="$('#museumAlt').show();">修改</a>
+                                <a href="javascript:void(0)" class="museum-details">详细信息</a>
+                                <a href="javascript:void(0)" class="museum-alt">修改</a>
                                 <a href="javascript:void(0)" class="museum-delete">删除</a>
                             </li>
                         </ul>
@@ -159,6 +159,63 @@
                     <button>提交</button>
                     <button class="close">取消</button>
                 </div>
+                <div id="museumAdd" class="pop-up">
+                    <h2>博物馆详情</h2>
+                    <div class="table">
+                        <table>
+                            <tr>
+                                <td>博物馆名称：</td>
+                                <td>
+                                    <form>
+                                        <input type="text" name="museumname">
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>博物馆类型：</td>
+                                <td>
+                                    <form action="">
+                                        <select name="levels">
+                                            <option value="">历史文化与综合类</option>
+                                            <option value="">自然科技与专题类</option>
+                                            <option value="">纪念类</option>
+                                        </select>
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>博物馆级别：</td>
+                                <td>
+                                    <form action="">
+                                        <select name="levels">
+                                            <option value="above">省管及省级以上</option>
+                                            <option value="others">其他</option>
+                                        </select>
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>评审年份：</td>
+                                <td>
+                                    <form action="">
+                                        <input type="checkbox" name="years" value="2007">2007
+                                        <input type="checkbox" name="years" value="2008">2008
+                                        <input type="checkbox" name="years" value="2009">2009
+                                        <input type="checkbox" name="years" value="2010">2010
+                                        <input type="checkbox" name="years" value="2011">2011
+                                    </form>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>详细资料：<br>不得少于250字</td>
+                                <td><textarea rows="10" cols="30">不得少于250字</textarea></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <button>提交</button>
+                    <button class="close">取消</button>
+                </div>
+
             </div>
             <div class="container">
                 <h1>各年份参评单位</h1>

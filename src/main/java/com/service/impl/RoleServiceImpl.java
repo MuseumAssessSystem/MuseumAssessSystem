@@ -5,6 +5,8 @@ import com.dao.impl.RoleDAOImpl;
 import com.entity.RoleEntity;
 import com.service.RoleService;
 
+import java.util.List;
+
 /**
  * Created by 10922 on 2018/1/4.
  */
@@ -13,5 +15,11 @@ public class RoleServiceImpl implements RoleService{
     public RoleEntity getRoleById(int rid) {
         RoleDAO roleDAO = new RoleDAOImpl();
         return roleDAO.getRole(new RoleEntity(rid)).get(0);
+    }
+
+    @Override
+    public List<RoleEntity> getAllRole() {
+        RoleDAO roleDAO = new RoleDAOImpl();
+        return roleDAO.getRole(new RoleEntity());
     }
 }

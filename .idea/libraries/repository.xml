@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="repository">
     <CLASSES>
-      <root url="file://E:/Library/Maven-Repo/repository" />
+      <root url="file://$MAVEN_REPOSITORY$" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

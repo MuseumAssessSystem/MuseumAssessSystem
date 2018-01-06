@@ -27,3 +27,9 @@
 .application-table ul li:first-child{
     width: 10%;
 }
+.file-table ul li:first-child{
+    width: 20%;
+}
+.file-table ul li:nth-child(n+2){
+    width: 40%;
+}

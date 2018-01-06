@@ -3,19 +3,15 @@ package com.entity;
 import javax.persistence.*;
 
 /**
- * Created by 10922 on 2017/12/30.
+ * Created by 10922 on 2018/1/6.
  */
 @Entity
-@Table(name = "dxassess", schema = "museum_assess")
-public class DxassessEntity {
-    private int dxaid;
+@Table(name = "dxassessexpert", schema = "museum_assess", catalog = "")
+public class DxassessexpertEntity {
+    private int edid;
     private int year;
-    private int mid;
-    private Double dxscore1;
-    private Double dxscore2;
-    private Double dxscore3;
-    private Double dxscore4;
-    private Double dxscore5;
+    private int eid;
+    private int dxc1id;
     private Double dxscore11;
     private Double dxscore12;
     private Double dxscore13;
@@ -29,19 +25,19 @@ public class DxassessEntity {
     private Double dxscore42;
     private Double dxscore43;
     private Double dxscore51;
-    private Double dxscore52;
+    private Double dxsocre52;
     private Double dxscore53;
     private Double dxscore54;
-    private Double dxtotal;
+    private int flag;
 
     @Id
-    @Column(name = "dxaid")
-    public int getDxaid() {
-        return dxaid;
+    @Column(name = "edid")
+    public int getEdid() {
+        return edid;
     }
 
-    public void setDxaid(int dxaid) {
-        this.dxaid = dxaid;
+    public void setEdid(int edid) {
+        this.edid = edid;
     }
 
     @Basic
@@ -52,56 +48,6 @@ public class DxassessEntity {
 
     public void setYear(int year) {
         this.year = year;
-    }
-
-    @Basic
-    @Column(name = "dxscore1")
-    public Double getDxscore1() {
-        return dxscore1;
-    }
-
-    public void setDxscore1(Double dxscore1) {
-        this.dxscore1 = dxscore1;
-    }
-
-    @Basic
-    @Column(name = "dxscore2")
-    public Double getDxscore2() {
-        return dxscore2;
-    }
-
-    public void setDxscore2(Double dxscore2) {
-        this.dxscore2 = dxscore2;
-    }
-
-    @Basic
-    @Column(name = "dxscore3")
-    public Double getDxscore3() {
-        return dxscore3;
-    }
-
-    public void setDxscore3(Double dxscore3) {
-        this.dxscore3 = dxscore3;
-    }
-
-    @Basic
-    @Column(name = "dxscore4")
-    public Double getDxscore4() {
-        return dxscore4;
-    }
-
-    public void setDxscore4(Double dxscore4) {
-        this.dxscore4 = dxscore4;
-    }
-
-    @Basic
-    @Column(name = "dxscore5")
-    public Double getDxscore5() {
-        return dxscore5;
-    }
-
-    public void setDxscore5(Double dxscore5) {
-        this.dxscore5 = dxscore5;
     }
 
     @Basic
@@ -235,13 +181,13 @@ public class DxassessEntity {
     }
 
     @Basic
-    @Column(name = "dxscore52")
-    public Double getDxscore52() {
-        return dxscore52;
+    @Column(name = "dxsocre52")
+    public Double getDxsocre52() {
+        return dxsocre52;
     }
 
-    public void setDxscore52(Double dxscore52) {
-        this.dxscore52 = dxscore52;
+    public void setDxsocre52(Double dxsocre52) {
+        this.dxsocre52 = dxsocre52;
     }
 
     @Basic
@@ -255,13 +201,13 @@ public class DxassessEntity {
     }
 
     @Basic
-    @Column(name = "dxtotal")
-    public Double getDxtotal() {
-        return dxtotal;
+    @Column(name = "flag")
+    public int getFlag() {
+        return flag;
     }
 
-    public void setDxtotal(Double dxtotal) {
-        this.dxtotal = dxtotal;
+    public void setFlag(int flag) {
+        this.flag = flag;
     }
 
     @Override
@@ -269,15 +215,11 @@ public class DxassessEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        DxassessEntity that = (DxassessEntity) o;
+        DxassessexpertEntity that = (DxassessexpertEntity) o;
 
-        if (dxaid != that.dxaid) return false;
+        if (edid != that.edid) return false;
         if (year != that.year) return false;
-        if (dxscore1 != null ? !dxscore1.equals(that.dxscore1) : that.dxscore1 != null) return false;
-        if (dxscore2 != null ? !dxscore2.equals(that.dxscore2) : that.dxscore2 != null) return false;
-        if (dxscore3 != null ? !dxscore3.equals(that.dxscore3) : that.dxscore3 != null) return false;
-        if (dxscore4 != null ? !dxscore4.equals(that.dxscore4) : that.dxscore4 != null) return false;
-        if (dxscore5 != null ? !dxscore5.equals(that.dxscore5) : that.dxscore5 != null) return false;
+        if (flag != that.flag) return false;
         if (dxscore11 != null ? !dxscore11.equals(that.dxscore11) : that.dxscore11 != null) return false;
         if (dxscore12 != null ? !dxscore12.equals(that.dxscore12) : that.dxscore12 != null) return false;
         if (dxscore13 != null ? !dxscore13.equals(that.dxscore13) : that.dxscore13 != null) return false;
@@ -291,22 +233,16 @@ public class DxassessEntity {
         if (dxscore42 != null ? !dxscore42.equals(that.dxscore42) : that.dxscore42 != null) return false;
         if (dxscore43 != null ? !dxscore43.equals(that.dxscore43) : that.dxscore43 != null) return false;
         if (dxscore51 != null ? !dxscore51.equals(that.dxscore51) : that.dxscore51 != null) return false;
-        if (dxscore52 != null ? !dxscore52.equals(that.dxscore52) : that.dxscore52 != null) return false;
+        if (dxsocre52 != null ? !dxsocre52.equals(that.dxsocre52) : that.dxsocre52 != null) return false;
         if (dxscore53 != null ? !dxscore53.equals(that.dxscore53) : that.dxscore53 != null) return false;
-        if (dxtotal != null ? !dxtotal.equals(that.dxtotal) : that.dxtotal != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = dxaid;
+        int result = edid;
         result = 31 * result + year;
-        result = 31 * result + (dxscore1 != null ? dxscore1.hashCode() : 0);
-        result = 31 * result + (dxscore2 != null ? dxscore2.hashCode() : 0);
-        result = 31 * result + (dxscore3 != null ? dxscore3.hashCode() : 0);
-        result = 31 * result + (dxscore4 != null ? dxscore4.hashCode() : 0);
-        result = 31 * result + (dxscore5 != null ? dxscore5.hashCode() : 0);
         result = 31 * result + (dxscore11 != null ? dxscore11.hashCode() : 0);
         result = 31 * result + (dxscore12 != null ? dxscore12.hashCode() : 0);
         result = 31 * result + (dxscore13 != null ? dxscore13.hashCode() : 0);
@@ -320,16 +256,11 @@ public class DxassessEntity {
         result = 31 * result + (dxscore42 != null ? dxscore42.hashCode() : 0);
         result = 31 * result + (dxscore43 != null ? dxscore43.hashCode() : 0);
         result = 31 * result + (dxscore51 != null ? dxscore51.hashCode() : 0);
-        result = 31 * result + (dxscore52 != null ? dxscore52.hashCode() : 0);
+        result = 31 * result + (dxsocre52 != null ? dxsocre52.hashCode() : 0);
         result = 31 * result + (dxscore53 != null ? dxscore53.hashCode() : 0);
-        result = 31 * result + (dxtotal != null ? dxtotal.hashCode() : 0);
+        result = 31 * result + flag;
         return result;
     }
-
-    public int getMid() {
-        return mid;
-    }
-    public void setMid(int mid){this.mid = mid;}
 
     public Double getDxscore54() {
         return dxscore54;
@@ -337,5 +268,21 @@ public class DxassessEntity {
 
     public void setDxscore54(Double dxscore54) {
         this.dxscore54 = dxscore54;
+    }
+
+    public int getEid() {
+        return eid;
+    }
+
+    public void setEid(int eid) {
+        this.eid = eid;
+    }
+
+    public int getDxc1id() {
+        return dxc1id;
+    }
+
+    public void setDxc1id(int dxc1id) {
+        this.dxc1id = dxc1id;
     }
 }

@@ -1,5 +1,6 @@
 package com.action;
 
+import com.entity.RoleEntity;
 import com.entity.UserEntity;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -45,7 +46,6 @@ public class UserAction extends ActionSupport{
         userEntity.setUname(uname);
         userEntity.setPassword(password);
 
-
         System.out.println(userEntity.getUname());
         System.out.println(userEntity.getPassword());
 
@@ -84,7 +84,12 @@ public class UserAction extends ActionSupport{
     public String addUser(){
         Map params = ActionContext.getContext().getParameters();
         UserService userService = new UserServiceImpl();
+        RoleService roleService = new RoleServiceImpl();
         user = (UserEntity)params.get("user");
+
+        List<RoleEntity> roles = roleService.getAllRole();
+        ActionContext.getContext().put("roles",roles);
+
         userService.addUser(user);
         return "addUser_success";
     }

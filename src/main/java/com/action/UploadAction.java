@@ -3,7 +3,6 @@ package com.action;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
 
-import javax.servlet.ServletContext;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -13,63 +12,75 @@ import java.util.List;
  * Created by 10922 on 2018/1/4.
  */
 public class UploadAction extends ActionSupport{
-    /*
-     * 这里定义的变量,一定要跟网页的<input type="file" name="file">中的name属性的值一致.
-     * 如果网页中定义的是<input type="file" name="img">,那么在这里就要定义File img;
-     */
-    private List<File> files;
-    /*
-     * 这里定义的fileFileName一定要是xxxFileName的形式,否则无法取到文件的文件名.
-     * 其中xxx必须与上面定义的File类型的变量一致,如果上面定义的是File img,那么这里就
-     * 定义为String imgFileName
-     */
-    private String wordFileName;
-    /*
-    * 这里定义的是文件的类型,如果不需要获取文件类型的话,可以不定义.
-    *  命名规则跟xxxFileName类似,这里一定要定义成xxxContentType形式.
-    */
-    private String wordContentType;
+    /**
+     *@描述 实现多文件上传
+     *@参数
+     *@返回值
+     *@创建人 zzh
+     *@创建时间 2018/1/5
+     *@修改人和其它时间
+    **/
+    private List<File> dxWords; // **
+    private List<String> dxWordsFileName; // **FileName
+    private List<String> dxWordsContentType; // **ContentType
+    private String savePath;
 
-    public List<File> getFiles() {
-        return files;
-    }
-
-    public void setFiles(List<File> files) {
-        this.files = files;
-    }
-
-    public String upload() throws Exception{
-        ServletContext servletContext = ServletActionContext.getServletContext();
-        String filePath = servletContext.getRealPath("/files/" + wordFileName);
-        System.out.println(filePath);
-
-        FileOutputStream out = new FileOutputStream(filePath);
-        FileInputStream in = new FileInputStream(filePath);
-
-        byte[] buffer = new byte[1024];
-        int len = 0;
-        while((len = in.read(buffer)) != -1){
-            out.write(buffer,0,len);
+    public String uploadList() throws Exception {
+        ServletActionContext.getRequest().setCharacterEncoding("UTF-8");
+        // 取得需要上传的文件数组
+        List<File> files = getDxWords();
+        if (files != null && files.size() > 0) {
+            for (int i = 0; i < files.size(); i++) {
+                if(getDxWords().get(i)==null)
+                    System.out.println("dxWords is null");
+                System.out.println(getSavePath() + "\\" + getDxWords().get(i).getName());
+                FileOutputStream fos = new FileOutputStream(getSavePath() + "\\" + getDxWords().get(i).getName());
+                FileInputStream fis = new FileInputStream(files.get(i));
+                byte[] buffer = new byte[1024];
+                int len = 0;
+                while ((len = fis.read(buffer)) > 0) {
+                    fos.write(buffer, 0, len);
+                }
+                fis.close();
+                fos.close();
+            }
+        }else{
+            System.out.println("nullllllllllllllll");
         }
-        out.close();
-        in.close();
-
-        return "upload_success";
+        return "uploadList_success";
     }
 
-    public String getWordContentType() {
-        return wordContentType;
+    public List<File> getDxWords(){
+        return dxWords;
     }
 
-    public void setWordContentType(String wordContentType) {
-        this.wordContentType = wordContentType;
+    public void setDxWords(List<File> dxWords) {
+        this.dxWords = dxWords;
     }
 
-    public void setWordFileName(String wordFileName) {
-        this.wordFileName = wordFileName;
+    public List<String> getDxWordsFileName(){
+        return dxWordsFileName;
     }
 
-    public String getWordFileName(){
-        return wordFileName;
+    public void setDxWordsFileName(List<String> dxWordsFileName) {
+        this.dxWordsFileName = dxWordsFileName;
+    }
+
+    public List<String> getDxWordsContentType() {
+        return dxWordsContentType;
+    }
+
+    public void setDxWordsContentType(List<String> dxWordsContentType) {
+        this.dxWordsContentType = dxWordsContentType;
+    }
+
+    public String getSavePath() throws Exception {
+        String path = ServletActionContext.getServletContext().getRealPath(savePath);
+        System.out.println(path);
+        return path;
+    }
+
+    public void setSavePath(String savePath) {
+        this.savePath = savePath;
     }
 }

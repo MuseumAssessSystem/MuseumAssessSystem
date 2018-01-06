@@ -11,19 +11,58 @@
         -  其中，实体名首字母大写，方法名小写
         -  result根据method返回的字符串，跳转到相应的界面上
         -->
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+    <constant name="struts.multipart.maxSize" value="10701096"/>
 
     <package name="default" namespace="/" extends="struts-default">
         <!-- UserAction类 -->
         <action name="UserAction_login" class="com.action.UserAction" method="login">
-            <result name="login_success">/view/Home.jsp</result>
-            <result name="login_failure">/view/error.jsp</result>
+            <result name="login_success">/Views/Home.jsp</result>
+            <result name="login_failure">/Views/index.jsp</result>
         </action>
 
 
         <!-- UploadAction类-->
+        <!--解决乱码    -->
 
-        <action name="UploadAction_upload" class="com.action.UploadAction" method="upload">
-            <result name=""></result>
+
+        <action name="UploadListAction_upload" class="com.action.UploadAction" method="uploadList">
+            <param name="savePath">/files</param>
+            <result name="uploadList_success"></result>
+        </action>
+
+        <action name="UploadFileAction_upload" class="com.action.UploadFileAction" method="uploadFile">
+            <result name="uploadFile_success">/view/Quantitative/Application.jsp</result>
+        </action>
+
+        <action name="DownlodaAction_download" class="com.action.DownloadAction" method="download">
+            <!--结果类型为Stream-->
+            <result name="download_success" type="stream">
+
+                <param name="contentType">${contentType}</param>
+                <!--默认就是inputStream,它将会指示StreamResult通过
+                  inputName属性值的getter和setter方法，如这里就是
+                  getInputStream()来获取下载文件的内容,意味着Action
+                  要有这个方法
+                  -->
+                <param name="inputName">inputStream</param>
+                <!--默认为inline（在线打开）,设置为attachment将会告诉浏览器下载
+                    该文件,filename指定下载文件时的文件名，若未指定将会以浏览器
+                    页面名作为文件名,如：以download.action作为文件名
+                  -->
+                <param name="contentDisposition">attachment;filename=${filename}</param>
+                <!--指定下载文件的缓冲大小-->
+                <param name="bufferSize">4096</param>
+
+            </result>
+        </action>
+
+        <action name="FileManageAction_filaManage" class="com.action.FileManageAction" method="fileManage">
+            <result name="fileManage_success">fileManage.jsp</result>
+        </action>
+
+        <action name="FileReaderAction_readExcel" class="com.action.FileReaderAction" method="readExcel">
+            <result></result>
         </action>
     </package>
 </struts>

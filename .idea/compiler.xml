@@ -20,7 +20,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="museumAssessSystem" target="1.8" />
+      <module name="museumAssessSystem" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
