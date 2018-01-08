@@ -3,6 +3,7 @@ package com.dao.impl;
 import com.dao.BaseHibernateDAO;
 import com.dao.DxassessexpertDAO;
 import com.entity.DxassessexpertEntity;
+import com.entity.ExpertEntity;
 import db.MyHibernateSessionFactory;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -81,4 +82,29 @@ public class DxassessexpertDAOImpl extends BaseHibernateDAO implements Dxassesse
 
         return dxassessexpertEntities;
     }
+
+    @Override
+    public List<ExpertEntity> getOptionDxassessexpertByYear(int year) {
+        String sql;
+        Transaction tx = null;
+        List expertEntities = new ArrayList<>();
+        try{
+            sql="select * from expert where eid not IN (select distinct eid from dxassessexpert)";
+
+            Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
+            tx = session.beginTransaction();
+            expertEntities = session.createSQLQuery(sql).addEntity(ExpertEntity.class).list();
+            tx.commit();
+
+        }catch (Exception e){
+            e.printStackTrace();
+            tx.commit();
+        } finally {
+            if (tx != null) {
+                tx = null;
+            }
+        }
+        return expertEntities;
+    }
+
 }

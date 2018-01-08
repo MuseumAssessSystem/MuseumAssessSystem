@@ -76,7 +76,7 @@ public class UserDAOImpl extends BaseHibernateDAO implements UserDAO {
             sql="select * from user where 1=1";
 
             if(userEntity.getUid()>0){      //
-                sql=sql+" and uid='"+userEntity.getUid()+"'";
+                sql=sql+" and uid="+userEntity.getUid();
             }
             if(userEntity.getUname()!=null && userEntity.getUname()!=""){
                 sql = sql + " and uname = '" + userEntity.getUname()+"'";
@@ -94,7 +94,6 @@ public class UserDAOImpl extends BaseHibernateDAO implements UserDAO {
             tx.commit();
         }catch (Exception e) {
             e.printStackTrace();
-            tx.commit();
         } finally {
             if (tx != null) {
                 tx = null;

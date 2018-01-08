@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <c:import url="../Common/Import.jsp"/>
+    <c:import url="/Views/Common/Import.jsp"/>
 
     <link rel="stylesheet" type="text/css" href="/Content/Styles/quantitative/museum.css">
 
@@ -23,30 +23,31 @@
 <div class="page-wrapper" id="museum">
     <!-- 导航栏 -->
     <div class="nav-wrap">
-        <%@ include file="../Common/Navbar.jsp" %>
+        <%@ include file="/Views/Common/Navbar.jsp" %>
     </div>
     <div class="content-wrap">
         <!-- header -->
         <div class="header-wrap">
-            <%@ include file="../Common/Header.jsp" %>
+            <%@ include file="/Views/Common/Header.jsp" %>
         </div>
         <!-- 内容区 -->
         <div class="container-wrap">
-            <div class="container">
+            <div class="container museum-manage">
 
                 <h1>博物馆管理</h1>
 
-                <div class="search" id="search-by-name">
-                    <form>
-                        <input type="text" placeholder="按博物馆名称搜索...">
-                        <button type="submit"></button>
-                    </form>
-                </div>
-                <div class="museum-btns">
-                    <div class="museum-btn add-museum">
+
+                <div class="op-btns">
+                    <div class="search" id="search-by-name">
+                        <form method="post">
+                            <input type="text" placeholder="按博物馆名称搜索..." >
+                            <button type="submit"></button>
+                        </form>
+                    </div>
+                    <div class="op-btn add-museum">
                         <a href="#" class="museum-add">添加博物馆</a>
                     </div>
-                    <div class="museum-btn year-museum">
+                    <div class="op-btn year-museum">
                         <a href="#search-by-year">各年份参评单位</a>
                     </div>
                 </div>
@@ -69,7 +70,7 @@
                             <li>
                                 <a href="javascript:void(0)" class="museum-details">详细信息</a>
                                 <a href="javascript:void(0)" class="museum-alt">修改</a>
-                                <a href="javascript:void(0)" class="museum-delete">删除</a>
+                                <a href="javascript:void(0)" class="museum-delete delete">删除</a>
                             </li>
                         </ul>
                     </div>
@@ -118,7 +119,7 @@
                             <tr>
                                 <td>博物馆类型：</td>
                                 <td>
-                                    <form action="">
+                                    <form action="" method="post">
                                         <select name="levels">
                                             <option value="">历史文化与综合类</option>
                                             <option value="">自然科技与专题类</option>
@@ -130,7 +131,7 @@
                             <tr>
                                 <td>博物馆级别：</td>
                                 <td>
-                                    <form action="">
+                                    <form action="" method="post">
                                         <select name="levels">
                                             <option value="above">省管及省级以上</option>
                                             <option value="others">其他</option>
@@ -141,7 +142,7 @@
                             <tr>
                                 <td>评审年份：</td>
                                 <td>
-                                    <form action="">
+                                    <form action="" method="post">
                                         <input type="checkbox" name="years" value="2007">2007
                                         <input type="checkbox" name="years" value="2008">2008
                                         <input type="checkbox" name="years" value="2009">2009
@@ -151,7 +152,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>详细资料：<br>不得少于250字</td>
+                                <td>详细资料：<br>(不得少于250字)</td>
                                 <td><textarea rows="10" cols="30">不得少于250字</textarea></td>
                             </tr>
                         </table>
@@ -166,7 +167,7 @@
                             <tr>
                                 <td>博物馆名称：</td>
                                 <td>
-                                    <form>
+                                    <form method="post">
                                         <input type="text" name="museumname">
                                     </form>
                                 </td>
@@ -174,7 +175,7 @@
                             <tr>
                                 <td>博物馆类型：</td>
                                 <td>
-                                    <form action="">
+                                    <form action="" method="post">
                                         <select name="levels">
                                             <option value="">历史文化与综合类</option>
                                             <option value="">自然科技与专题类</option>
@@ -186,7 +187,7 @@
                             <tr>
                                 <td>博物馆级别：</td>
                                 <td>
-                                    <form action="">
+                                    <form action="" method="post">
                                         <select name="levels">
                                             <option value="above">省管及省级以上</option>
                                             <option value="others">其他</option>
@@ -197,7 +198,7 @@
                             <tr>
                                 <td>评审年份：</td>
                                 <td>
-                                    <form action="">
+                                    <form action="" method="post">
                                         <input type="checkbox" name="years" value="2007">2007
                                         <input type="checkbox" name="years" value="2008">2008
                                         <input type="checkbox" name="years" value="2009">2009
@@ -207,7 +208,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>详细资料：<br>不得少于250字</td>
+                                <td>详细资料：<br>(不得少于250字)</td>
                                 <td><textarea rows="10" cols="30">不得少于250字</textarea></td>
                             </tr>
                         </table>
@@ -217,11 +218,11 @@
                 </div>
 
             </div>
-            <div class="container">
+            <div class="container year-museum">
                 <h1>各年份参评单位</h1>
                 <div class="search" id="search-by-year">
-                    <form>
-                        <select name="years">
+                    <form method="post">
+                        <select name="years" >
                             <option value="2007" selected>2007</option>
                             <option value="2008">2008</option>
                             <option value="2009">2009</option>

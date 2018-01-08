@@ -1,17 +1,18 @@
-package com.service;
+package com.service.impl;
 
 import com.dao.UserDAO;
 import com.dao.impl.RoleDAOImpl;
 import com.dao.impl.UserDAOImpl;
 import com.entity.RoleEntity;
 import com.entity.UserEntity;
+import com.service.UserService;
 
 import java.util.List;
 
 /**
  * Created by 10922 on 2018/1/2.
  */
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private UserDAO userDAO = new UserDAOImpl();
 
@@ -68,7 +69,14 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public boolean deleteUser(int id) {
-        this.userDAO.updateUser(new UserEntity(id));
+        this.userDAO.deleteUser(new UserEntity(id));
         return true;
+    }
+
+    @Override
+    public List<UserEntity> getUserByUname(String uname) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUname(uname);
+        return this.userDAO.getUser(userEntity);
     }
 }

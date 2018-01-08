@@ -14,6 +14,13 @@ public class MuseumEntity {
     private String description;
     private int mid;
 
+    public MuseumEntity(){
+
+    }
+    public MuseumEntity(int mid){
+         this.mid=mid;
+    }
+
     @Basic
     @Column(name = "mname")
     public String getMname() {

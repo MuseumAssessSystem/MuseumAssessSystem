@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.entity.DxassessexpertEntity;
+import com.entity.ExpertEntity;
 
 import java.util.List;
 
@@ -13,4 +14,5 @@ public interface DxassessexpertDAO
     void updateDxassessexpert(DxassessexpertEntity dxassessexpertEntity);
     void deleteDxassessexpert(DxassessexpertEntity dxassessexpertEntity);
     List<DxassessexpertEntity> getDxassessexpert(DxassessexpertEntity dxassessexpertEntity);
+    List<ExpertEntity> getOptionDxassessexpertByYear(int year);
 }

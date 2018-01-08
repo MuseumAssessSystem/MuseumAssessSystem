@@ -16,7 +16,9 @@
 <body>
 　　<h2>文件下载内容：</h2>
 <br/>
-<s:property value=""></s:property>
-通讯录.xls:<a href="DownlodaAction_download.action?downPath=专家1.xlsx">点击下载</a><br/>
+<!--
+通讯录.xls:<a href="DownlodaAction_download.action?filename=E:\Files\dlassess\博物馆1">点击下载</a><br/>
+-->
+<a href="DownZipAction_downloadzip.action">点击下载</a><br/>
 </body>
 </html>

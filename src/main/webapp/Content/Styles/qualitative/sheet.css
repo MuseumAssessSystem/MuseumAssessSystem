@@ -1,0 +1,57 @@
+.search{
+    display: inline-block;
+    min-width: 300px;
+}
+.search form{
+    height: 32px;
+}
+.search input{
+    left: 0;
+    top: 0;
+    height: 30px;
+}
+.search button{
+    top: 0;
+    width: 50px;
+    height: 30px;
+}
+.search select{
+    height: 30px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    margin-left: -5px;
+}
+#search_by_year select{
+    margin-left: 0px;
+}
+.op-btns{
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+.op-btn{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.upload_option_list ul li:nth-child(1){
+    width: 9%;
+}
+.upload_option_list ul li:nth-child(2){
+    width: 15%;
+}
+.upload_option_list ul li:nth-child(3){
+    width: 25%;
+}
+.upload_option_list ul li:nth-child(4){
+    width: 25%;
+}
+.upload_option_list ul li:nth-child(5){
+    width: 25%;
+}
+.not_upload ul li:nth-child(1){
+    width: 30%;
+}
+.not_upload ul li:nth-child(2){
+    width: 69%;
+}

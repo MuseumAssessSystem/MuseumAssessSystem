@@ -12,6 +12,14 @@ public class ExpertEntity {
     private String ename;
     private String description;
     private int dxc1id;
+
+    public ExpertEntity(){
+
+    }
+
+    public ExpertEntity(int eid) { this.eid = eid;
+    }
+
     @Id
     @Column(name = "eid")
     public int getEid() {

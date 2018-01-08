@@ -60,22 +60,25 @@ public class DlassessDAOImpl extends BaseHibernateDAO implements DlassessDAO{
             sql="select * from dlassess where 1=1";
 
             if(dlassessEntity.getDlaid()>0){
-                sql=sql+"and dlaid="+dlassessEntity.getDlaid();
+                sql=sql+" and dlaid="+dlassessEntity.getDlaid();
             }
             if(dlassessEntity.getMid()>0){
-                sql=sql+"and mid="+dlassessEntity.getMid();
+                sql=sql+" and mid="+dlassessEntity.getMid();
             }
             if(dlassessEntity.getYear()>0){
-                sql=sql+"and year="+dlassessEntity.getYear();
+                sql=sql+" and year="+dlassessEntity.getYear();
             }
 
             Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
             tx = session.beginTransaction();
+            session.createSQLQuery(sql);
             dlassessEntities = session.createSQLQuery(sql).addEntity(DlassessEntity.class).list();
+            System.out.println("size = " + dlassessEntities.size());
             tx.commit();
         }catch (Exception e) {
             e.printStackTrace();
             tx.commit();
+            System.out.println("SQL error");
         } finally {
             if (tx != null) {
                 tx = null;

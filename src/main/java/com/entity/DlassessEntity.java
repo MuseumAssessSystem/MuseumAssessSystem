@@ -26,6 +26,9 @@ public class DlassessEntity {
     private Double dlscore42;
     private Double dltotal;
 
+    public DlassessEntity(){
+    }
+
     @Id
     @Column(name = "dlaid")
     public int getDlaid() {
@@ -239,4 +242,5 @@ public class DlassessEntity {
     public void setMid(int mid){
         this.mid=mid;
     }
+
 }

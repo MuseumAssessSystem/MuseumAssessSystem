@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class RoleEntity {
     private int rid;
     private String rname;
+    private String description;
 
     public RoleEntity(){
 
@@ -57,5 +58,13 @@ public class RoleEntity {
         int result = rid;
         result = 31 * result + (rname != null ? rname.hashCode() : 0);
         return result;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

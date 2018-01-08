@@ -48,6 +48,7 @@ public class FileManageAction extends ActionSupport{
         files = new ArrayList<>();
         filesPath = new ArrayList<>();
 
+
         if (!(f.isDirectory())){
             f.mkdir();
         }
@@ -65,6 +66,7 @@ public class FileManageAction extends ActionSupport{
             filesPath.add(dirPath + "//" + filelist[i]);
         }
         ActionContext.getContext().put("filesName",filesFileName);
+        ActionContext.getContext().put("filesPath",filesPath);
         return "fileManage_success";
     }
 
@@ -75,4 +77,8 @@ public class FileManageAction extends ActionSupport{
     public void setFilesPath(List<String> filesPath) {
         this.filesPath = filesPath;
     }
+
+
+
+
 }

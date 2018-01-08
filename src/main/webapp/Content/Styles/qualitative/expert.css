@@ -1,0 +1,73 @@
+.op-btns{
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+#op_btns{
+    margin-left: -30px;
+}
+.search{
+    display: inline-block;
+    min-width: 300px;
+    margin-left: 10px;
+}
+.search form{
+    height: 32px;
+}
+.search input{
+    left: 0;
+    top: 0;
+    height: 30px;
+}
+.search button{
+    top: 0;
+    width: 50px;
+    height: 30px;
+}
+.op-btn{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.expert_table{
+    margin-bottom: 100px;
+}
+.expert_table ul li:nth-child(1){
+    width: 10%;
+}
+.expert_table ul li:nth-child(2){
+    width:25%;
+}
+.expert_table ul li:nth-child(3){
+    width: 32%;
+}
+.expert_table ul li:nth-child(4){
+    width: 32%;
+}
+span.red{
+    color: red;
+}
+form textarea{
+    overflow: auto;
+    resize: none;
+}
+.evaluate_table ul li:nth-child(1){
+    width: 15%;
+}
+.evaluate_table ul li:nth-child(2){
+    width: 30%;
+}
+.evaluate_table ul li:nth-child(3){
+    width: 39%;
+}
+.evaluate_table ul li:nth-child(4){
+    width: 15%;
+}
+#search_by_year{
+    margin-left: 40px;
+}
+.search select{
+    height: 30px;
+}
+#detail_expert table tr td:nth-child(1)
+{
+    width:35%;
+}

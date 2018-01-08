@@ -1,9 +1,8 @@
-<!-- 申报书管理 -->
 <%--
   Created by IntelliJ IDEA.
   User: yve
 --%>
-<!-- 博物馆管理 -->
+<!-- 申报书管理 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 
@@ -13,7 +12,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <c:import url="../Common/Import.jsp"/>
+    <c:import url="/Views/Common/Import.jsp"/>
 
     <link rel="stylesheet" type="text/css" href="/Content/Styles/quantitative/application.css">
 
@@ -24,33 +23,34 @@
 <div class="page-wrapper" id="application">
     <!-- 导航栏 -->
     <div class="nav-wrap">
-        <%@ include file="../Common/Navbar.jsp" %>
+        <%@ include file="/Views/Common/Navbar.jsp" %>
     </div>
     <div class="content-wrap">
         <!-- header -->
         <div class="header-wrap">
-            <%@ include file="../Common/Header.jsp" %>
+            <%@ include file="/Views/Common/Header.jsp" %>
         </div>
         <!-- 内容区 -->
         <div class="container-wrap">
             <div class="container">
                 <h1>申报书管理</h1>
-                <div class="search" id="search-by-name">
-                    <form>
-                        <input type="text" placeholder="按博物馆名称搜索...">
-                        <select name="years">
-                            <option value="2007" selected>2007</option>
-                            <option value="2008">2008</option>
-                            <option value="2009">2009</option>
-                            <option value="2010">2010</option>
-                            <option value="2011">2011</option>
-                            <option value="2012">2012</option>
-                        </select>
-                        <button type="submit"></button>
-                    </form>
-                </div>
-                <div class="museum-btns">
-                    <div class="museum-btn upload-application">
+
+                <div class="op-btns">
+                    <div class="search" id="search-by-name">
+                        <form>
+                            <input type="text" placeholder="请输入博物馆名称...">
+                            <select name="years">
+                                <option value="2007" selected>2007</option>
+                                <option value="2008">2008</option>
+                                <option value="2009">2009</option>
+                                <option value="2010">2010</option>
+                                <option value="2011">2011</option>
+                                <option value="2012">2012</option>
+                            </select>
+                            <button type="submit"></button>
+                        </form>
+                    </div>
+                    <div class="op-btn upload-application">
                         <a href="#">上传申报书</a>
                     </div>
                 </div>
@@ -69,16 +69,17 @@
                             <li></li>
                             <li>2007</li>
                             <li>
-                                <a href="javascript:void(0)">下载申报书</a>
-                                <a href="javascript:void(0)" class="file-manage" onclick="$('#file,.mask').show();">文件管理</a>
-                                <a href="javascript:void(0)">删除申报书</a>
+                                <a href="ZipDownloadAction_downzip.action?filename=博物馆1申报书&filePath=E:\Files\dlassess\博物馆1申报书">下载申报书</a>
+                                <a href="javascript:void(0)" class="file-manage">文件管理</a>
+                                <a href="javascript:void(0)" class="delete">删除申报书</a>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="pop-up" id="upload">
+                    <h2>上传申报书</h2>
                     <form action="" enctype="multipart/form-data" method="post">
-                        <div class="table">
+                        <div class="table upload-table">
                             <table>
                                 <tr>
                                     <td>请选择博物馆及年份：</td>
@@ -101,43 +102,49 @@
                                 <tr>
                                     <td>上传申报书：</td>
                                     <td>
-                                        <input type="file" name="application"><br/>
+                                            <input type="file" name="application" accept="application/msword,aplication/zip,application/x-rar-compressed">
                                     </td>
                                 </tr>
 
                             </table>
                         </div>
-                        <input type="submit" value="提交">
+                        <button type="submit">提交</button>
                         <button class="close">取消</button>
                     </form>
                 </div>
                 <div class="pop-up" id="file">
+                    <h2>文件管理</h2>
                     <div class="upload">
-                        <button>添加文件</button>
-                        <form action="UploadFileAction_upload" enctype="multipart/form-data" method="post">
-                            <input type="file" name="dxWord"><br/>
+                        <button class="add-files">添加文件</button>
+                        <form>
+                            <ul class="upload-input">
+                                    <li>
+                                        <input type="file" name="file0" accept="application/msword,aplication/zip,application/x-rar-compressed">
+                                        <button class="delete-input">删除</button>
+                                    </li>
 
-                            <input type="submit" value="提交">
+                            </ul>
+                            <button type="submit">提交</button>
                             <button class="close">返回</button>
                         </form>
                     </div>
                     <div class="file-details">
                         <div class="table file-table">
-                            <ul class="table-head">
-                                <li>序号</li>
-                                <li>文件名</li>
-                                <li>操作</li>
-                            </ul>
-                            <div class="table-body">
-                                <ul class="body-item">
-                                    <li>1</li>
-                                    <li>博物馆1</li>
-                                    <li>
+                            <table>
+                                <tr class="head-item">
+                                    <td>序号</td>
+                                    <td>文件名</td>
+                                    <td>操作</td>
+                                </tr>
+                                <tr class="body-item">
+                                    <td>1</td>
+                                    <td>博物馆1</td>
+                                    <td>
                                         <a href="javascript:void(0)">下载</a>
-                                        <a href="javascript:void(0)">删除</a>
-                                    </li>
-                                </ul>
-                            </div>
+                                        <a href="javascript:void(0)" class="delete">删除</a>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>

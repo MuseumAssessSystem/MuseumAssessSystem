@@ -8,9 +8,4 @@ $(function(){
     $(".museum-add").click(function () {
         $('#museumAdd,.mask').show();
     });
-
-    $(".close").click(function () {
-        event.stopPropagation();
-        $(".pop-up,.mask").hide();
-    })
 });

@@ -6,12 +6,10 @@ import javax.persistence.*;
  * Created by 10922 on 2018/1/6.
  */
 @Entity
-@Table(name = "dxassessexpert", schema = "museum_assess", catalog = "")
+@Table(name = "dxassessexpert", schema = "museum_assess")
 public class DxassessexpertEntity {
     private int edid;
     private int year;
-    private int eid;
-    private int dxc1id;
     private Double dxscore11;
     private Double dxscore12;
     private Double dxscore13;
@@ -26,9 +24,46 @@ public class DxassessexpertEntity {
     private Double dxscore43;
     private Double dxscore51;
     private Double dxsocre52;
+
+    public Double getDxsocre52() {
+        return dxsocre52;
+    }
+
+    public void setDxsocre52(Double dxsocre52) {
+        this.dxsocre52 = dxsocre52;
+    }
+
     private Double dxscore53;
     private Double dxscore54;
+
     private int flag;
+    private int mid;
+    private int eid;
+    private int dxc1id;
+
+    public int getDxc1id() {
+        return dxc1id;
+    }
+
+    public void setDxc1id(int dxc1id) {
+        this.dxc1id = dxc1id;
+    }
+
+    public int getEid() {
+        return eid;
+    }
+
+    public void setEid(int eid) {
+        this.eid = eid;
+    }
+
+    public int getMid() {
+        return mid;
+    }
+
+    public void setMid(int mid) {
+        this.mid = mid;
+    }
 
     @Id
     @Column(name = "edid")
@@ -39,6 +74,8 @@ public class DxassessexpertEntity {
     public void setEdid(int edid) {
         this.edid = edid;
     }
+
+
 
     @Basic
     @Column(name = "year")
@@ -182,12 +219,22 @@ public class DxassessexpertEntity {
 
     @Basic
     @Column(name = "dxsocre52")
-    public Double getDxsocre52() {
+    public Double getDxscore52() {
         return dxsocre52;
     }
 
-    public void setDxsocre52(Double dxsocre52) {
+    public void setDxscore52(Double dxsocre52) {
         this.dxsocre52 = dxsocre52;
+    }
+
+    @Basic
+    @Column(name = "dxscore54")
+    public Double getDxscore54() {
+        return dxscore54;
+    }
+
+    public void setDxscore54(Double dxscore54) {
+        this.dxscore54 = dxscore54;
     }
 
     @Basic
@@ -260,29 +307,5 @@ public class DxassessexpertEntity {
         result = 31 * result + (dxscore53 != null ? dxscore53.hashCode() : 0);
         result = 31 * result + flag;
         return result;
-    }
-
-    public Double getDxscore54() {
-        return dxscore54;
-    }
-
-    public void setDxscore54(Double dxscore54) {
-        this.dxscore54 = dxscore54;
-    }
-
-    public int getEid() {
-        return eid;
-    }
-
-    public void setEid(int eid) {
-        this.eid = eid;
-    }
-
-    public int getDxc1id() {
-        return dxc1id;
-    }
-
-    public void setDxc1id(int dxc1id) {
-        this.dxc1id = dxc1id;
     }
 }

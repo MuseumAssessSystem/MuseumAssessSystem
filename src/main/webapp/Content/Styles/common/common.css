@@ -101,19 +101,54 @@
 	padding: 30px 20px;
 	margin-bottom: 20px;
 }
-
+.container-wrap .second-nav{
+	position: relative;
+	background: #f1f2f3;
+	box-shadow: 0 2px 25px rgba(0,0,0,0.15);
+	border-radius: 10px 10px 0 0;
+	height: 50px;
+	padding-left: 10px;
+}
+.container-wrap .second-nav ul li{
+	display: inline-block;
+	height: 50px;
+	line-height: 30px;
+	padding: 10px;
+}
+.container-wrap .second-nav .tab{
+	opacity: 1;
+}
+.container-wrap .second-nav .tab:first-child{
+	opacity: 0.5;
+}
 /*标题*/
 h1{
 	font-size: 20px;
 }
-/*搜索*/
-.search{
-    margin: 20px 0;
+h2{
+	font-size: 18px;
 }
+button{
+	width: 50px;
+	border-radius: 10px;
+	background: #778899;
+	color: #fff;
+}
+/*input[type = file]{*/
+	/*position: absolute;*/
+	/*left: 0;*/
+	/*top: 0;*/
+	/*opacity: 0;*/
+	/*filter: alpha(opacity=0);*/
+	/*cursor: pointer;*/
+/*}*/
+
+/*搜索*/
+
 .search form{
     position: relative;
 }
-.search input{
+.search input[type = text]{
     box-sizing: border-box;
     padding: 5px;
     border-radius: 5px 0 0 5px;
@@ -131,24 +166,22 @@ h1{
     font-size: 14px;
     color: #fff;
 }
-.search select{
+select{
     border:1px solid #000;
     -webkit-appearance: none;
     padding: 2px 20px;
     vertical-align: middle;
 }
 /*表格上按钮*/
-.museum-btns{
+.op-btns{
     overflow: hidden;
 }
-.museum-btn{
-    margin-bottom: 5px;
+.op-btn{
     text-align: center;
     display: inline-block;
     float: right;
-    margin-left: 10px;
 }
-.museum-btn a{
+.op-btn a{
     display: block;
     border-radius: 2px;
     padding: 0 5px;
@@ -173,6 +206,7 @@ h1{
 	text-align: center;
 	vertical-align: middle;
 }
+
 .table .table-head{
 	background: linear-gradient(-270deg,rgba(203,225,243,.3) 0,#cbe1f3 100%);
 	font-weight: bold;
@@ -194,6 +228,9 @@ h1{
     display: inline-block;
     border-right: 1px solid #000;
 }
+.table .body-item li a:hover{
+    opacity: 0.6;
+}
 .table .body-item li a:last-child{
     border:none;
 }
@@ -205,28 +242,51 @@ h1{
 	display: none;
 	width: 500px;
     height: auto;
-	position: absolute;
+	position: fixed;
 	left: 0;
 	right: 0;
-	top: 200px;
+	top: 150px;
 	margin: 0 auto;
+	padding-bottom: 20px;
 	background: #f9fafc;
-	padding: 10px 0;
 	border-radius: 5px;
 	border: 1px solid #f1f2f3;
     z-index: 11;
+	text-align: center;
 }
 .pop-up h2{
 	text-align: center;
-	margin-bottom: 10px;
+	padding: 10px 0;
+	background: #778899;
+	background: linear-gradient(60deg, #29323c 0%, #485563 100%);
+	color: #fff;
+}
+.pop-up table{
+	width: 100%;
 }
 .pop-up tr{
 	height: 30px;
 }
-.pop-up td{
-	padding: 0 10px;
+.pop-up tr td{
+	padding: 10px;
 	line-height: 30px;
 	vertical-align: top;
+}
+.pop-up tr td a:hover{
+    opacity: 0.6;
+}
+.pop-up tr td:nth-child(1){
+	background: #f1f2f3;
+	text-align: right;
+}
+.pop-up tr td:nth-child(2){
+	background: #fff;
+	text-align: left;
+}
+.pop-up button{
+	display: inline-block;
+	margin: 20px;
+	margin-bottom: 0;
 }
 .mask{
     display: none;
@@ -238,4 +298,33 @@ h1{
     top: 0;
     background: #000;
     opacity: 0.1;
+}
+/*表格tab*/
+.table ul li{
+	display: inline-block;
+	line-height: 30px;
+	padding: 10px;
+}
+
+.table-tabs ul{
+    letter-spacing: -4px;
+}
+.table-tabs .table-tab{
+	opacity: 1;
+    display: inline-block;
+    padding: 10px;
+    width: 90px;
+    background: linear-gradient(to right, #dfe9f3 0%, white 100%);
+    letter-spacing: 1px;
+    border-bottom: 0 solid #bdc2e8;
+}
+.table-tabs .table-tab:first-child{
+	opacity: 0.6;
+    border-bottom: 2px solid #bdc2e8;
+}
+.hide{
+	display: none;
+}
+.show{
+	display: block;
 }

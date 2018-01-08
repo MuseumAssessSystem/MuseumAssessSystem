@@ -47,6 +47,10 @@ public class RoleDAOImpl extends BaseHibernateDAO implements RoleDAO{
                 sql = sql + " and rname = '" + roleEntity.getRname()+"'";
             }
 
+            if(roleEntity.getDescription()!=null && roleEntity.getDescription()!=""){
+                sql = sql + " and description = '" + roleEntity.getDescription() + "'";
+            }
+
             Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
             tx = session.beginTransaction();
             roleEntities = session.createSQLQuery(sql).addEntity(RoleEntity.class).list();

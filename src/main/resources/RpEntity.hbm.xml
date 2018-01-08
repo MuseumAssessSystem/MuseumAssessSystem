@@ -5,7 +5,7 @@
 <hibernate-mapping>
 
     <class name="com.entity.RpEntity" table="rp" schema="museum_assess">
-        <id name="id" column="rpid" type="java.lang.Integer"/>
+        <id name="rpid" column="rpid" type="java.lang.Integer"/>
         <property name="rid" column="rid" type="java.lang.Integer"/>
         <property name="pid" column="pid" type="java.lang.Integer"/>
     </class>

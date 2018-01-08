@@ -18,13 +18,36 @@
         <!-- UserAction类 -->
         <action name="UserAction_login" class="com.action.UserAction" method="login">
             <result name="login_success">/Views/Home.jsp</result>
-            <result name="login_failure">/Views/index.jsp</result>
+            <result name="login_failure">index.jsp</result>
+        </action>
+        <action name="UserAction_addUser" class="com.action.UserAction" method="addUser">
+            <result name="addUser_success"></result>
+        </action>
+        <action name="UserAction_deleteUser" class="com.action.UserAction" method="deleteUser">
+            <result name="deleteUser_success" type="redirect">UserAction_getAllUser.action</result>
+        </action>
+        <action name="UserAction_updateUser" class="com.action.UserAction" method="updateUser">
+            <result name="updateUser_success"></result>
+        </action>
+        <action name="UserAction_getAllUserRole" class="com.action.UserAction" method="getAllUserRole">
+            <result name="getAllUserRole_success">/Views/User.jsp</result>
+        </action>
+        <action name="UserAction_getUserByUname" class="com.action.UserAction" method="getUserByUname">
+            <result name="getUserByUname_success">/Views/User.jsp</result>
+        </action>
+
+        <!-- RoleAction类 -->
+        <action name="RoleAction_getRolePriviledge" class="com.action.RoleAction" method="getRolePriviledge">
+            <result name="getRolePriviledge_success"></result>
+        </action>
+
+        <!-- MuseumAction类 -->
+        <action name="MuseumAction_getMuseumByName" class="com.action.MuseumAction" method="getMuseumByName">
+            <result name="getMuseumByName_success">test.jsp</result>
         </action>
 
 
         <!-- UploadAction类-->
-        <!--解决乱码    -->
-
 
         <action name="UploadListAction_upload" class="com.action.UploadAction" method="uploadList">
             <param name="savePath">/files</param>
@@ -35,11 +58,13 @@
             <result name="uploadFile_success">/view/Quantitative/Application.jsp</result>
         </action>
 
-        <action name="DownlodaAction_download" class="com.action.DownloadAction" method="download">
-            <!--结果类型为Stream-->
+
+        <!-- DownLoadAction类-->
+        <action name="DownlodaAction_download" class="com.action.DownloadAction" method="execute">
+            <!-- 以stream二进制流的方式打开 -->
             <result name="download_success" type="stream">
 
-                <param name="contentType">${contentType}</param>
+                <param name="contentType">application/x-msdownload</param>
                 <!--默认就是inputStream,它将会指示StreamResult通过
                   inputName属性值的getter和setter方法，如这里就是
                   getInputStream()来获取下载文件的内容,意味着Action
@@ -52,17 +77,34 @@
                   -->
                 <param name="contentDisposition">attachment;filename=${filename}</param>
                 <!--指定下载文件的缓冲大小-->
-                <param name="bufferSize">4096</param>
+                <param name="bufferSize">8192</param>
 
             </result>
         </action>
 
+        <!-- DownZipAction类 -->
+        <action name="DownZipAction_downloadzip" class="com.action.DownZipAction" method="downLoadZip">
+            <result name="downLoadZip_success">/Views/Quantitative/Application.jsp</result>
+        </action>
+
+        <!-- FileManageAction类 -->
         <action name="FileManageAction_filaManage" class="com.action.FileManageAction" method="fileManage">
             <result name="fileManage_success">fileManage.jsp</result>
         </action>
 
+        <!-- FileReaderAction类 -->
         <action name="FileReaderAction_readExcel" class="com.action.FileReaderAction" method="readExcel">
             <result></result>
         </action>
+        <action name="FileReaderAction_readWord" class="com.action.FileReaderAction" method="readWord">
+            <result></result>
+        </action>
+        
+        <!-- SheetAction类 -->
+        <action name="SheetAction_sheetList" class="com.action.SheetAction" method="sheetList">
+            <result name="sheetList_success">/Views/Qualitative/Sheet.jsp</result>
+        </action>
+
+
     </package>
 </struts>

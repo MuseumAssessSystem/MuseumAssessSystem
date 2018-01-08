@@ -1,8 +1,6 @@
 package com.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by 10922 on 2017/12/30.
@@ -12,17 +10,19 @@ import javax.persistence.Table;
 public class RpEntity {
     private int rid;
     private int pid;
-    private int id;
+    private int rpid;
 
     @Id
-    public int getId() {
-        return id;
+    @Column(name = "rpid")
+    public int getRpid() {
+        return rpid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setRpid(int rpid) {
+        this.rpid = rpid;
     }
 
+    @Column(name = "pid")
     public int getPid() {
         return pid;
     }
@@ -31,6 +31,7 @@ public class RpEntity {
         this.pid = pid;
     }
 
+    @Column(name = "rid")
     public int getRid() {
         return rid;
     }
@@ -38,4 +39,6 @@ public class RpEntity {
     public void setRid(int rid) {
         this.rid = rid;
     }
+
+
 }

@@ -1,3 +1,11 @@
+.op-btns{
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+.search{
+    display: inline-block;
+    min-width: 300px;
+}
 .search form{
     height: 32px;
 }
@@ -11,21 +19,16 @@
     width: 50px;
     height: 30px;
 }
+.op-btn{
+    margin-top: 10px;
+    margin-left: 10px;
+}
 
-#search-by-year select{
-    margin-left: 20px;
-    height: 25px;
-}
-#search-by-year button{
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-}
 .museum-name-table{
     margin-bottom: 100px;
 }
 .museum-name-table ul li:nth-child(1){
-    width: 6%;
+    width: 5%;
 }
 .museum-name-table ul li:nth-child(2){
     width: 13%;
@@ -44,27 +47,28 @@
 }
 
 .museum-year-table ul li:nth-child(1){
-    width: 10%
+    width: 9%
 }
 .museum-year-table ul li:nth-child(n+2){
     width: 30%;
 }
 
-.pop-up tr td:nth-child(1){
-    background: #f1f2f3;
-    text-align: right;
-    width: 50%;
+.year-museum h1{
+    margin-bottom: 20px;
 }
-.pop-up tr td:nth-child(2){
-    background: #fff;
-    text-align: left;
-    width: 50%;
+#search-by-year{
+    position: absolute;
+    top: 28px;
+    left: 160px;
 }
-.pop-up button{
-    display: block;
-    margin: 20px auto 0;
+#search-by-year select{
+    margin-left: 20px;
+    height: 25px;
 }
-#museumAlt button{
-    float: right;
-    margin-right: 5px;
+#search-by-year button{
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
+
+

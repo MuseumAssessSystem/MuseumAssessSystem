@@ -16,7 +16,7 @@ import java.util.List;
 public class Dxcriteria1DAOImpl extends BaseHibernateDAO implements Dxcriteria1DAO {
 
     @Override
-    public List<Dxcriteria1Entity> getDxcriteria1(Dxcriteria1Entity dxcriteria1Entityy) {
+    public List<Dxcriteria1Entity> getDxcriteria1(Dxcriteria1Entity dxcriteria1Entity) {
         /**
          * @author:zzy
          * @Description:获取一级指标信息
@@ -29,11 +29,11 @@ public class Dxcriteria1DAOImpl extends BaseHibernateDAO implements Dxcriteria1D
         try{
             sql="select * from dxcriteria1 where 1=1";
 
-            if(dxcriteria1Entityy.getDxc1Id()>0){
-                sql=sql+" and dxc1id='"+dxcriteria1Entityy.getDxc1Id()+"'";
+            if(dxcriteria1Entity.getDxc1Id()>0){
+                sql=sql+" and dxc1id="+dxcriteria1Entity.getDxc1Id()+"";
             }
-            if(dxcriteria1Entityy.getDxc1Name()!=null && dxcriteria1Entityy.getDxc1Name()!=""){
-                sql = sql + " and dxc1name = '" + dxcriteria1Entityy.getDxc1Name()+"'";
+            if(dxcriteria1Entity.getDxc1Name()!=null && dxcriteria1Entity.getDxc1Name()!=""){
+                sql = sql + " and dxc1name = '" + dxcriteria1Entity.getDxc1Name()+"'";
             }
 
             Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();

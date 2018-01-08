@@ -7,5 +7,6 @@
     <class name="com.entity.RoleEntity" table="role" schema="museum_assess">
         <id name="rid" column="rid"/>
         <property name="rname" column="rname"/>
+        <property name="description" column="description"/>
     </class>
 </hibernate-mapping>

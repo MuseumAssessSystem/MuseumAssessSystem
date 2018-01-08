@@ -60,33 +60,42 @@ public class MuseumDAOImpl extends BaseHibernateDAO implements MuseumDAO{
             sql="select *  from museum where 1=1";
 
             if(museumEntity.getMid()>0){
-                sql=sql+"and mid="+museumEntity.getMid();
+                sql=sql+" and mid= "+museumEntity.getMid();
             }
             if(museumEntity.getMname()!=null && museumEntity.getMname()!=""){
-                sql=sql+"and mname="+museumEntity.getMname();
+                sql=sql+" and mname='"+museumEntity.getMname()+"'";
             }
             if(museumEntity.getMtype()!=null && museumEntity.getMtype()!=""){
-                sql=sql+"and mtype="+museumEntity.getMtype();
+                sql=sql+" and mtype='"+museumEntity.getMtype()+"'";
             }
             if(museumEntity.getMclass()!=null && museumEntity.getMclass()!=""){
-                sql=sql+"and mclass="+museumEntity.getMclass();
+                sql=sql+" and mclass='"+museumEntity.getMclass()+"'";
             }
             if(museumEntity.getDescription()!=null && museumEntity.getDescription()!=""){
-                sql=sql+"and description="+museumEntity.getDescription();
+                sql=sql+" and description='"+museumEntity.getDescription()+"'";
             }
 
             Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
             tx = session.beginTransaction();
+            System.out.println("hello");
             museumEntities = session.createSQLQuery(sql).addEntity(MuseumEntity.class).list();
             tx.commit();
+            System.out.println("SQL execute success");
+            System.out.println("size = " + museumEntities.size());
+            if (museumEntities.size()>0)
+                System.out.print("dao层成功");
+            else
+                System.out.print("失败");
         }catch (Exception e) {
             e.printStackTrace();
             tx.commit();
+            System.out.println("SQL execute fail");
         } finally {
             if (tx != null) {
                 tx = null;
             }
         }
+
         return museumEntities;
     }
 }

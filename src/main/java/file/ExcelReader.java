@@ -1,7 +1,5 @@
 package file;
 
-import com.dao.DxassessexpertDAO;
-import com.dao.impl.DxassessexpertDAOImpl;
 import com.entity.DxassessexpertEntity;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
@@ -15,12 +13,9 @@ import java.util.Map;
  */
 public class ExcelReader {
     private File file;
-    private String filePath;
     private String sheetName;
     private Workbook workBook;
     private Sheet sheet;
-    private boolean flag;
-    private int row;
     private int start;
     private int end;
     private static int column = 9;  // Excel文件的第9列（从0开始）是二级指标的分数
@@ -48,11 +43,10 @@ public class ExcelReader {
     public ExcelReader(File file,String sheetName){
         this.file = file;
         this.sheetName = sheetName;
-        this.flag = false;
     }
 
-    public boolean excelToDatabase(){
-        DxassessexpertDAO deDao = new DxassessexpertDAOImpl();
+
+    public DxassessexpertEntity excelToDatabase(){
         DxassessexpertEntity deEntity = new DxassessexpertEntity();
 
         InputStream inputStream = null;
@@ -72,64 +66,61 @@ public class ExcelReader {
                 end = start + rowsNum.get("dxscore11") - 1;
                 deEntity.setDxscore11(getSecondScore("藏品管理"));
                 start = end + 1;
-                end = start + rowsNum.get("dxscore12");
+                end = start + rowsNum.get("dxscore12") - 1;
                 deEntity.setDxscore12(getSecondScore("藏品管理"));
                 start = end + 1;
-                end = start + rowsNum.get("dxscore13");
+                end = start + rowsNum.get("dxscore13") - 1;
                 deEntity.setDxscore13(getSecondScore("藏品管理"));
                 break;
             case "科学研究":
                 start = 1;
-                end = start + rowsNum.get("dxscore21");
+                end = start + rowsNum.get("dxscore21") - 1;
                 deEntity.setDxscore21(getSecondScore("科学研究"));
                 start = end;
-                end = start + rowsNum.get("dxscore22");
+                end = start + rowsNum.get("dxscore22") - 1;
                 deEntity.setDxscore22(getSecondScore("科学研究"));
                 break;
             case "陈列展览与社会教育":
                 start = 1;
-                end = start + rowsNum.get("dxscore31");
+                end = start + rowsNum.get("dxscore31") - 1;
                 deEntity.setDxscore31(getSecondScore("陈列展览与社会教育"));
                 start = end;
-                end = start + rowsNum.get("dxscore32");
+                end = start + rowsNum.get("dxscore32") - 1;
                 deEntity.setDxscore32(getSecondScore("陈列展览与社会教育"));
                 start = end;
-                end = start + rowsNum.get("dxscore33");
+                end = start + rowsNum.get("dxscore33") - 1;
                 deEntity.setDxscore33(getSecondScore("陈列展览与社会教育"));
                 start = end;
-                end = start + rowsNum.get("dxscore34");
+                end = start + rowsNum.get("dxscore34") - 1;
                 deEntity.setDxscore34(getSecondScore("陈列展览与社会教育"));
                 break;
             case "公共关系与服务":
                 start = 1;
-                end = start + rowsNum.get("dxscore41");
+                end = start + rowsNum.get("dxscore41") - 1;
                 deEntity.setDxscore41(getSecondScore("公共关系与服务"));
                 start = end + 1;
-                end = start + rowsNum.get("dxscore42");
+                end = start + rowsNum.get("dxscore42") - 1;
                 deEntity.setDxscore42(getSecondScore("公共关系与服务"));
                 start = end + 1;
-                end = start + rowsNum.get("dxscore43");
+                end = start + rowsNum.get("dxscore43") - 1;
                 deEntity.setDxscore43(getSecondScore("公共关系与服务"));
                 break;
             case "博物馆管理与发展建设":
                 start = 1;
-                end = start + rowsNum.get("dxscore51");
+                end = start + rowsNum.get("dxscore51") - 1;
                 deEntity.setDxscore51(getSecondScore("博物馆管理与发展建设"));
                 start = end + 1;
-                end = start + rowsNum.get("dxscore52");
+                end = start + rowsNum.get("dxscore52") - 1;
                 deEntity.setDxsocre52(getSecondScore("博物馆管理与发展建设"));
                 start = end + 1;
-                end = start + rowsNum.get("dxscore53");
+                end = start + rowsNum.get("dxscore53") - 1;
                 deEntity.setDxscore53(getSecondScore("博物馆管理与发展建设"));
                 start = end + 1;
-                end = start + rowsNum.get("dxscore54");
+                end = start + rowsNum.get("dxscore54") - 1;
                 deEntity.setDxscore54(getSecondScore("博物馆管理与发展建设"));
                 break;
         }
-        // 将deEntity add 进数据库
-        deDao.addDxassessexpert(deEntity);
-        System.out.println("add deEntity finished");
-        return true;
+        return deEntity;
     }
 
     private double getSecondScore(String sheetName){

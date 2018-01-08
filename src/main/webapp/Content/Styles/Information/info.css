@@ -1,0 +1,23 @@
+#user_list{
+    width: 500px;
+    height: auto;
+    margin: 0 auto;
+    border: 1px solid #bababa;
+}
+#user_table{
+    width: 350px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.table td{
+    padding: 0 30px;
+    line-height: 30px;
+    vertical-align: top;
+}
+.table tr{
+    height: 30px;
+}
+h1{
+    margin-left: 180px;
+}

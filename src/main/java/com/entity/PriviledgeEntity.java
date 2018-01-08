@@ -11,6 +11,14 @@ public class PriviledgeEntity {
     private int pid;
     private String pname;
 
+    public PriviledgeEntity(){
+
+    }
+
+    public PriviledgeEntity(int pid){
+        this.pid = pid;
+    }
+
     @Id
     @Column(name = "pid")
     public int getPid() {

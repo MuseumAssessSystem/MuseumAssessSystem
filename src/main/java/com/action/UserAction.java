@@ -6,7 +6,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.service.RoleService;
 import com.service.UserService;
-import com.service.UserServiceImpl;
+import com.service.impl.UserServiceImpl;
 import com.service.impl.RoleServiceImpl;
 
 import java.util.ArrayList;
@@ -18,13 +18,11 @@ import java.util.Map;
  * Created by 10922 on 2017/12/30.
  */
 public class UserAction extends ActionSupport{
-    private String uname ;
+    private String username ;
     private String password;
-    private String rid;
     private String rname;
     private String uid;
     private UserEntity user;
-
 
     public String login(){         //处理登录请求的方法
         /**
@@ -36,14 +34,14 @@ public class UserAction extends ActionSupport{
          *@修改人和其它时间
         **/
         Map params = ActionContext.getContext().getParameters();
-        uname = ((String[]) params.get("uname"))[0];
+        username = ((String[]) params.get("uname"))[0];
         password = ((String[]) params.get("password"))[0];
 
-        System.out.println("uname " + uname);
+        System.out.println("uname " + username);
         System.out.println("password " + password);
 
         UserEntity userEntity = new UserEntity();
-        userEntity.setUname(uname);
+        userEntity.setUname(username);
         userEntity.setPassword(password);
 
         System.out.println(userEntity.getUname());
@@ -61,8 +59,9 @@ public class UserAction extends ActionSupport{
             return "login_success";
     }
 
-    public String getAllUser(){
+    public String getAllUserRole(){
         //Map params = ActionContext.getContext().getParameters();
+        // 获得所有用户
         UserService userService = new UserServiceImpl();
         RoleService roleService = new RoleServiceImpl();
         List<UserEntity> userEntities = userService.getAllUser();
@@ -77,8 +76,29 @@ public class UserAction extends ActionSupport{
             userMap.put("rname",roleService.getRoleById(user.getRid()).getRname());
             userList.add(userMap);
         }
-        ActionContext.getContext().put("userList",userList);
-        return "getAllUser_success";
+        ActionContext.getContext().getSession().put("userList",userList);
+
+        // 获得所有角色
+        List<RoleEntity> roles = roleService.getAllRole();
+        System.out.print("role description is " + roles.get(0).getDescription());
+        ActionContext.getContext().getSession().put("roleList",roles);
+
+        // 获得所有角色的所有权限
+
+        return "getAllUserRole_success";
+    }
+
+    public String getUserByUname(){
+        // uname = ((String[]) ActionContext.getContext().getSession().get("username"))[0];
+        Map params = ActionContext.getContext().getParameters();
+        username = ((String[]) params.get("username"))[0];
+        UserService userService = new UserServiceImpl();
+
+        System.out.println("username = " + username);
+
+        List<UserEntity> users = userService.getUserByUname(username);
+        ActionContext.getContext().getSession().put("userList",users);
+        return "getUserByUname_success";
     }
 
     public String addUser(){
@@ -88,25 +108,39 @@ public class UserAction extends ActionSupport{
         user = (UserEntity)params.get("user");
 
         List<RoleEntity> roles = roleService.getAllRole();
-        ActionContext.getContext().put("roles",roles);
+        ActionContext.getContext().getSession().put("roles",roles);
 
         userService.addUser(user);
         return "addUser_success";
     }
 
     public String deleteUser(){
-        Map params = ActionContext.getContext().getParameters();
         UserService userService = new UserServiceImpl();
-        uid = ((String[])params.get("uid"))[0];
         userService.deleteUser(new Integer(uid));
         return "deleteUser_success";
     }
 
     public String updateUser(){
-        Map params = ActionContext.getContext().getParameters();
+        Map session = ActionContext.getContext().getSession();
         UserService userService = new UserServiceImpl();
-        user = (UserEntity)params.get("user");
+        user = (UserEntity)session.get("user");
         userService.updateUser(user);
         return "updateUser_success";
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

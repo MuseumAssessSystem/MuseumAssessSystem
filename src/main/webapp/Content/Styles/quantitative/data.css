@@ -1,0 +1,69 @@
+h1{
+    margin-bottom: 20px;
+}
+
+#oall .table ul li{
+    width: 13%;
+}
+#oall .table ul li:first-child{
+    width: 5%;
+}
+#oall .table ul li:nth-child(3){
+    width: 10%;
+}
+#oall .table ul li:nth-child(4),#oall .table ul li:nth-child(5){
+    width: 16%
+}
+
+#ofirst .table ul li{
+    width: 11%;
+}
+#ofirst .table ul li:first-child{
+    width: 5%;
+}
+#ofirst .table ul li:nth-child(n + 4){
+    width: 18%;
+}
+
+#osecond .table ul li{
+    width: 8%;
+}
+#osecond .table ul li:nth-last-child(n + 10){
+    width: 9%;
+}
+#osecond .table ul li:first-child{
+    width: 5%;
+}
+#osecond .table ul li:nth-child(n + 11){
+    width: 10%;
+}
+
+#ftype .table ul li:nth-last-child(n + 5),
+#flevel .table ul li:nth-last-child(n + 5){
+    width: 12%;
+}
+#ftype .table ul li:first-child,
+#flevel .table ul li:first-child{
+    width: 6%;
+}
+#ftype .table ul li:nth-child(3),
+#flevel .table ul li:nth-child(3){
+    width: 9%;
+}
+#ftype .table ul li:nth-child(n + 5),
+#flevel .table ul li:nth-child(n + 5){
+    width: 15%;
+}
+
+#stype .table ul li,
+#slevel .table ul li{
+    width: 8%;
+}
+#stype .table ul li:nth-last-child(n + 10),
+#slevel .table ul li:nth-last-child(n + 10){
+    width: 7%;
+}
+#stype .table ul li:first-child,
+#slevel .table ul li:first-child{
+    width: 5%;
+}

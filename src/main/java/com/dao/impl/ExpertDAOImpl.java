@@ -74,9 +74,15 @@ public class ExpertDAOImpl extends BaseHibernateDAO implements ExpertDAO{
                 sql=sql+" and dxc1id='"+expertEntity.getDxc1id()+"'";
             }
 
+            System.out.println(sql);
+
             Session session = MyHibernateSessionFactory.getSessionFactory().getCurrentSession();
             tx = session.beginTransaction();
             expertEntities = session.createSQLQuery(sql).addEntity(ExpertEntity.class).list();
+
+            if(expertEntities.size()==0)
+                System.out.println("dao层失败");
+
             tx.commit();
         }catch (Exception e) {
             e.printStackTrace();
