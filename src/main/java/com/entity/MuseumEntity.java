@@ -15,7 +15,6 @@ public class MuseumEntity {
     private int mid;
 
     public MuseumEntity(){
-
     }
     public MuseumEntity(int mid){
          this.mid=mid;

@@ -22,4 +22,12 @@ public class RoleServiceImpl implements RoleService{
         RoleDAO roleDAO = new RoleDAOImpl();
         return roleDAO.getRole(new RoleEntity());
     }
+
+    @Override
+    public List<RoleEntity> getRoleByName(String rname) {
+        RoleDAO roleDAO = new RoleDAOImpl();
+        RoleEntity roleEntity = new RoleEntity();
+        roleEntity.setRname(rname);
+        return roleDAO.getRole(roleEntity);
+    }
 }

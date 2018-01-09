@@ -14,6 +14,7 @@ public class TotalassessEntity {
     private Integer taid;
     private Double tscore;
     private Integer mid;
+    private Integer year;
 
     @Basic
     @Column(name = "taid")
@@ -33,6 +34,16 @@ public class TotalassessEntity {
 
     public void setTscore(Double tscore) {
         this.tscore = tscore;
+    }
+
+    @Basic
+    @Column(name = "year")
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
     }
 
     @Override

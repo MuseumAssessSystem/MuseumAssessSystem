@@ -1,8 +1,18 @@
 package com.service.impl;
 
+import com.dao.DlassessDAO;
+import com.dao.DxassessDAO;
+import com.dao.DxassessexpertDAO;
 import com.dao.MuseumDAO;
+import com.dao.impl.DlassessDAOImpl;
+import com.dao.impl.DxassessDAOImpl;
+import com.dao.impl.DxassessexpertDAOImpl;
 import com.dao.impl.MuseumDAOImpl;
+import com.entity.DlassessEntity;
+import com.entity.DxassessEntity;
+import com.entity.DxassessexpertEntity;
 import com.entity.MuseumEntity;
+import com.service.DlassessService;
 import com.service.MuseumService;
 
 import java.util.List;
@@ -32,7 +42,43 @@ public class MuseumServiceImpl implements MuseumService {
         *@Author:xyj
         *@Date:22:19 2018/1/3
         **/
+        DxassessexpertDAO dxassessexpertDAO = new DxassessexpertDAOImpl();
+        DlassessDAO dlDAO = new DlassessDAOImpl();
+        DxassessDAO dxDAO = new DxassessDAOImpl();
+        DxassessexpertDAO deDAO = new DxassessexpertDAOImpl();
+
+        // 删除dxassessexpert表中mid对应的记录
+        DxassessexpertEntity deEntity = new DxassessexpertEntity();
+        deEntity.setMid(mid);
+        List<DxassessexpertEntity> deEntities = dxassessexpertDAO.getDxassessexpert(deEntity);
+        for(int i=0;i<deEntities.size();i++){
+            deDAO.deleteDxassessexpert(deEntities.get(i));
+        }
+
+        // 删除dxassess表中mid对应的记录
+        DxassessEntity dxEntity = new DxassessEntity();
+        dxEntity.setMid(mid);
+        List<DxassessEntity> dxEntities = dxDAO.getDxassess(dxEntity);
+        for(int i=0;i<dxEntities.size();i++){
+            dxDAO.deleteDxassess(dxEntities.get(i));
+        }
+
+        // 删除dlassess表中mid对应的记录
+        DlassessEntity dlEntity = new DlassessEntity();
+        dlEntity.setMid(mid);
+        List<DlassessEntity> dlEntities = dlDAO.getDlassess(dlEntity);
+        for(int i=0;i<dlEntities.size();i++){
+            dlDAO.deleteDlassess(dlEntities.get(i));
+        }
+
+        // 删除博物馆
         this.museumDAO.deleteMuseum(new MuseumEntity(mid));
+
+        // 更新
+        DlassessService dlService = new DlassessServiceImpl();
+        for (int i=0;i<dlEntities.size();i++){
+            dlService.computeDlassess(dlEntities.get(i).getYear());
+        }
         return true;
     }
 

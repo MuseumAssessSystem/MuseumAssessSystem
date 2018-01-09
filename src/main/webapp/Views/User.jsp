@@ -1,5 +1,4 @@
-<%@ page import="javax.swing.*" %>
-<%@ page import="com.opensymphony.xwork2.ActionContext" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: Satan
   Date: 2018/1/5

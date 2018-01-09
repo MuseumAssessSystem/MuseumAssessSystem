@@ -58,6 +58,7 @@ public class FileManageAction extends ActionSupport{
         System.out.println("dirPath = " + dirPath);
         File file = new File(dirPath);
         System.out.println("文件夹");
+
         String[] filelist = file.list();
         for(int i=0;i<filelist.length;i++){
             System.out.println("第"+i+"个是"+filelist[i]);

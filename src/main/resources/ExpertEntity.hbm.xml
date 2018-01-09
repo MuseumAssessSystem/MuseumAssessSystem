@@ -5,7 +5,9 @@
 <hibernate-mapping>
 
     <class name="com.entity.ExpertEntity" table="expert" schema="museum_assess">
-        <id name="eid" column="eid"/>
+        <id name="eid" type="java.lang.Integer" column="eid">
+            <generator class="increment"/>
+        </id>
         <property name="ename" column="ename"/>
         <property name="description" column="description"/>
         <property name="dxc1id" column="dxc1id" type="java.lang.Integer"/>

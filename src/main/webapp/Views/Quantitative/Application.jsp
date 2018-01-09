@@ -8,6 +8,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 
 <!DOCTYPE html>
 <html>
@@ -37,9 +38,9 @@
 
                 <div class="op-btns">
                     <div class="search" id="search-by-name">
-                        <form>
-                            <input type="text" placeholder="请输入博物馆名称...">
-                            <select name="years">
+                        <form action="WordAction_dirSearch">
+                            <input type="text" name="museumName" placeholder="请输入博物馆名称...">
+                            <select name="year" class="year">
                                 <option value="2007" selected>2007</option>
                                 <option value="2008">2008</option>
                                 <option value="2009">2009</option>
@@ -63,17 +64,22 @@
                         <li>操作</li>
                     </ul>
                     <div class="table-body">
+                        <s:if test="#session.words.size()!=0">
+                        <s:iterator value="#session.words" var="word">
                         <ul class="body-item">
                             <li>1</li>
-                            <li>博物馆1</li>
-                            <li></li>
-                            <li>2007</li>
+                            <li><c:out value="${word['mname']}"/></li>
+                            <li><c:out value="${word['upTime']}"/></li>
+                            <li><c:out value="${word['year']}"/></li>
                             <li>
-                                <a href="ZipDownloadAction_downzip.action?filename=博物馆1申报书&filePath=E:\Files\dlassess\博物馆1申报书">下载申报书</a>
+                                <a href="DownZipAction_downloadzip.action?filename=${word['dirName']}&filePath=${word['dirPath']}">下载申报书</a>
                                 <a href="javascript:void(0)" class="file-manage">文件管理</a>
-                                <a href="javascript:void(0)" class="delete">删除申报书</a>
+                                <a href="DeleteFileAction_deleteFile.action?filePath=${word['dirPath']}" class="delete">删除申报书</a>
                             </li>
                         </ul>
+                        </s:iterator>
+                        </s:if>
+                        <s:else>没有申报书....</s:else>
                     </div>
                 </div>
                 <div class="pop-up" id="upload">

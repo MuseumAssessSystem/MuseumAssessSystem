@@ -5,7 +5,9 @@
 <hibernate-mapping>
 
     <class name="com.entity.PriviledgeEntity" table="priviledge" schema="museum_assess">
-        <id name="pid" column="pid"/>
+        <id name="pid" type="java.lang.Integer" column="pid">
+            <generator class="increment"/>
+        </id>
         <property name="pname" column="pname"/>
     </class>
 </hibernate-mapping>

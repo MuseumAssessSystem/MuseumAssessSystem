@@ -24,16 +24,16 @@
         </div>
         <!-- 内容区 -->
         <div class="container-wrap">
+            <!-- 未提交定性评估意见书专家名单-->
             <div class="container">
 
                 <div class="mask"></div>
 
-                <h1>打分表管理</h1>
+                <h1>未提交定性评估意见书专家名单</h1>
 
                 <div class="op-btns">
-                    <div class="search" id="search_by_name">
-                        <form action="SheetAction_sheetSearch">
-                            <input type="text" name="expertName" placeholder="请输入专家姓名..." class="input_name">
+                    <div class="search" id="search_by_year">
+                        <form action="SheetAction_getUnupExpert">
                             <select name="year" class="year">
                                 <option value="2007" selected>2007</option>
                                 <option value="2008">2008</option>
@@ -45,40 +45,25 @@
                             <button type="submit"></button>
                         </form>
                     </div>
-                    <div class="op-btn upload_option" id="upload_option">
-                        <a href="#">上传专家定性评估意见书</a>
-                    </div>
                 </div>
 
-                <div class="table upload_option_list">
+                <div class="table not_upload">
                     <ul class="table-head">
                         <li>序号</li>
                         <li>专家姓名</li>
-                        <li>上传打分表文件</li>
-                        <li>上传时间</li>
-                        <li>操作</li>
                     </ul>
                     <div class="table-body">
-                        <s:if test="#session.sheets.size()!=0">
-                            <s:iterator value="#session.sheets" var="sheet" status="index">
-                        <ul class="body-item">
-                            <li><s:property value="%{#index.getIndex()+1}"/></li>
-                            <li><c:out value="${sheet['ename']}"/></li>
-                            <li><c:out value="${sheet['sheetName']}"></c:out></li>
-                            <li><c:out value="${sheet['upTime']}"/></li>
-                            <li>
-                                <a href="DownlodaAction_download.action?filename=${sheet['sheetPath']}">下载打分表</a>
-                                <a href="javascript:void(0)" class="sheet_detail">详尽信息</a>
-                                <a href="DeleteFileAction_deleteFile.action?filePath=${sheet['sheetPath']}" class="sheet_delete">删除</a>
-                            </li>
-                        </ul>
+                        <s:if test="#session.unUpExpertList.size()!=0">
+                            <s:iterator value="#session.unUpExpertList" var="unUpExpert" status="index">
+                                <ul class="body-item">
+                                    <li><s:property value="%{#index.getIndex()+1}"/></li>
+                                    <li><c:out value="${unUpExpert}"/></li>
+                                </ul>
                             </s:iterator>
+                            <s:else>所有专家均已上传打分表...</s:else>
                         </s:if>
-                        <s:else>没有打分表文件...</s:else>
                     </div>
-
                 </div>
-
             </div>
         </div>
 

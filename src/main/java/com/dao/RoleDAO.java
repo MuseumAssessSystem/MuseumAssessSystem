@@ -9,7 +9,6 @@ import java.util.List;
  */
 public interface RoleDAO {
 
-
     void addRole(RoleEntity roleEntity);
     void deleteRole(RoleEntity roleEntity);
     void updateRole(RoleEntity roleEntity);

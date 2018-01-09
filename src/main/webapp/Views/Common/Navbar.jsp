@@ -15,8 +15,8 @@
             <li class="sub-menu">
                 <a href="#" class="link"><span>定量评估</span></a>
                 <ul class="sub">
-                    <li><a href="/Views/Quantitative/Museum.jsp">博物馆</a></li>
-                    <li><a href="/Views/Quantitative/Application.jsp">申报书</a></li>
+                    <li><a href="MuseumAction_getAllMuseum">博物馆</a></li>
+                    <li><a href="WordAction_wordList.action?dir=/dlassess">申报书</a></li>
                     <li><a href="/Views/Quantitative/Data.jsp">定量数据</a></li>
                 </ul>
             </li>
@@ -25,6 +25,7 @@
                 <ul class="sub">
                     <li><a href="/Views/Qualitative/Expert.jsp">专家</a></li>
                     <li><a href="SheetAction_sheetList.action?dir=/dxassess">打分表</a></li>
+                    <li><a href="SheetAction_getUnupExpert.action?year=2008">未上传申报书</a></li>
                     <li><a href="/Views/Qualitative/Data.jsp">定性数据</a></li>
                 </ul>
             </li>

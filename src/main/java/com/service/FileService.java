@@ -8,5 +8,5 @@ import com.entity.DxassessexpertEntity;
  */
 public interface FileService {
     void addDxassessexpertEntity(DxassessexpertEntity deEntity,String ename,String year);
-    void addDlassessEntity(DlassessEntity dlEntity,String ename,String year);
+    void addDlassessEntity(DlassessEntity dlEntity,String mname,String year);
 }

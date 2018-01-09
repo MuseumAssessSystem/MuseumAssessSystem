@@ -237,6 +237,7 @@ select{
 .table .table-body ul:nth-child(odd){
 	background: #fff;
 }
+
 /*弹窗*/
 .pop-up{
 	display: none;
@@ -261,29 +262,39 @@ select{
 	background: linear-gradient(60deg, #29323c 0%, #485563 100%);
 	color: #fff;
 }
+.form-container table,
 .pop-up table{
 	width: 100%;
 }
+.form-container table{
+	box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+	border-radius: 5px;
+}
+.form-container tr,
 .pop-up tr{
 	height: 30px;
 }
+.form-container tr td,
 .pop-up tr td{
 	padding: 10px;
 	line-height: 30px;
 	vertical-align: top;
 }
+.form-container tr td a:hover,
 .pop-up tr td a:hover{
     opacity: 0.6;
 }
+.form-container tr td:nth-child(1),
 .pop-up tr td:nth-child(1){
 	background: #f1f2f3;
 	text-align: right;
 }
+.form-container tr td:nth-child(2),
 .pop-up tr td:nth-child(2){
 	background: #fff;
 	text-align: left;
 }
-.pop-up button{
+.form-container button,.pop-up button{
 	display: inline-block;
 	margin: 20px;
 	margin-bottom: 0;
@@ -299,6 +310,8 @@ select{
     background: #000;
     opacity: 0.1;
 }
+
+
 /*表格tab*/
 .table ul li{
 	display: inline-block;
@@ -327,4 +340,12 @@ select{
 }
 .show{
 	display: block;
+}
+
+.container-wrap .form-container {
+	padding: 50px;
+}
+.container-wrap .form-container h1{
+	text-align: center;
+	margin-bottom: 30px;
 }

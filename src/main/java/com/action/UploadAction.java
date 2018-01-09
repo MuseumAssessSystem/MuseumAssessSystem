@@ -14,7 +14,7 @@ import java.util.List;
 public class UploadAction extends ActionSupport{
     /**
      *@描述 实现多文件上传
-     *@参数
+     *@参数 无效类
      *@返回值
      *@创建人 zzh
      *@创建时间 2018/1/5

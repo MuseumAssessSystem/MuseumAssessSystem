@@ -5,7 +5,9 @@
 <hibernate-mapping>
 
     <class name="com.entity.DlassessEntity" table="dlassess" schema="museum_assess">
-        <id name="dlaid" column="dlaid"/>
+        <id name="dlaid" type="java.lang.Integer" column="dlaid">
+            <generator class="increment"/>
+        </id>
         <property name="year" column="year"/>
         <property name="dlscore1" column="dlscore1"/>
         <property name="dlscore2" column="dlscore2"/>

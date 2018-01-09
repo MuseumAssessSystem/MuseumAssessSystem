@@ -67,3 +67,74 @@ h1{
 #slevel .table ul li:first-child{
     width: 5%;
 }
+.op-btns{
+    margin-bottom: 5px;
+}
+.search{
+    display: inline-block;
+    min-width: 300px;
+    position: relative;
+}
+.search form{
+    height: 32px;
+}
+.search input{
+    left: 0;
+    top: 0;
+    height: 30px;
+}
+.search button{
+    top: 0;
+    width: 50px;
+    height: 30px;
+}
+.search select{
+    height: 30px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    margin-left: 0px;
+}
+.search button.dl_btn:before{
+    content: "定量计算";
+    font-size: 14px;
+    color: #fff;
+}
+.search button.dl_btn{
+    width: 100px;
+    height: 30px;
+    top:0;
+    left: 0;
+    transform: translate(70px,0);
+}
+
+
+button.calculate_rank:before{
+    content: "排名计算";
+    font-size: 14px;
+    color: #fff;
+}
+button.calculate_rank{
+    width: 100px;
+    height: 30px;
+    top: 0;
+    left: 0;
+    transform: translate(500px,0);
+    margin-top: 10px;
+}
+.calculate_all_score{
+    position: relative;
+}
+.table{
+    min-height: 100px;
+}
+/*计算表*/
+.calculate_all_score ul li:nth-child(1){
+    width: 28%;
+}
+.calculate_all_score ul li:nth-child(2){
+    width: 35%;
+}
+.calculate_all_score ul li:nth-child(3){
+    width: 35%;
+}

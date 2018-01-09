@@ -5,7 +5,9 @@
 <hibernate-mapping>
 
     <class name="com.entity.RoleEntity" table="role" schema="museum_assess">
-        <id name="rid" column="rid"/>
+        <id name="rid" type="java.lang.Integer" column="rid">
+            <generator class="increment"/>
+        </id>
         <property name="rname" column="rname"/>
         <property name="description" column="description"/>
     </class>

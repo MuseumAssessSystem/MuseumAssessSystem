@@ -21,13 +21,11 @@ $(function(){
     });
     //删除
     $(".delete").on('click', function(){
-        layer.confirm('确认删除？', {
-            btn: ['确认','再想想'],
-            yes:function(index){
-                layer.close(index);
-                //    删除操作
-            }
-        })
+        if(confirm("确定是否删除?")){
+
+        }else{
+
+        }
     });
 
     //tab切换

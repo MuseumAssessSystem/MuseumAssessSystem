@@ -21,45 +21,85 @@
             <result name="login_failure">index.jsp</result>
         </action>
         <action name="UserAction_addUser" class="com.action.UserAction" method="addUser">
-            <result name="addUser_success"></result>
+            <result name="addUser_success" type="redirect">UserAction_getAllUserRole.action</result>
         </action>
         <action name="UserAction_deleteUser" class="com.action.UserAction" method="deleteUser">
-            <result name="deleteUser_success" type="redirect">UserAction_getAllUser.action</result>
+            <result name="deleteUser_success" type="redirect">UserAction_getAllUserRole.action</result>
         </action>
         <action name="UserAction_updateUser" class="com.action.UserAction" method="updateUser">
-            <result name="updateUser_success"></result>
+            <result name="updateUser_success" type="redirect">UserAction_getAllUserRole.action</result>
         </action>
         <action name="UserAction_getAllUserRole" class="com.action.UserAction" method="getAllUserRole">
-            <result name="getAllUserRole_success">/Views/User.jsp</result>
+            <result name="getAllUserRole_success">/Views/User/User.jsp</result>
         </action>
         <action name="UserAction_getUserByUname" class="com.action.UserAction" method="getUserByUname">
-            <result name="getUserByUname_success">/Views/User.jsp</result>
+            <result name="getUserByUname_success">/Views/User/User.jsp</result>
+        </action>
+        <action name="UserAction_getUserById" class="com.action.UserAction" method="getUserById">
+            <result name="getUserById_success">/Views/User/UserAlt.jsp</result>
+            <result name="getUserById_failure">/Views/User/User.jsp</result>
         </action>
 
         <!-- RoleAction类 -->
         <action name="RoleAction_getRolePriviledge" class="com.action.RoleAction" method="getRolePriviledge">
-            <result name="getRolePriviledge_success"></result>
+            <result name="getRolePriviledge_success">/Views/User/RoleAlt.jsp</result>
         </action>
 
         <!-- MuseumAction类 -->
+        <action name="MuseumAction_getAllMuseum" class="com.action.MuseumAction" method="getAllMuseum">
+            <result name="getAllMuseum_success">/Views/Quantitative/Museum.jsp</result>
+        </action>
         <action name="MuseumAction_getMuseumByName" class="com.action.MuseumAction" method="getMuseumByName">
-            <result name="getMuseumByName_success">test.jsp</result>
+            <result name="getMuseumByName_success">/Views/Quantitative/Museum.jsp</result>
+        </action>
+        <action name="MuseumAction_getMuseumByYear" class="com.action.MuseumAction" method="getMuseumByYear">
+            <result name="getMuseumByYear_success">/Views/Quantitative/Museum.jsp</result>
+        </action>
+        <action name="MusemAction_deleteMuseum" class="com.action.MuseumAction" method="deleteMuseum">
+            <result name="deleteMuseum_success" type="redirect">MuseumAction_getAllMuseum.action</result>
         </action>
 
+        <!-- FileManageAction类 -->
+        <!-- <action name="FileManageAction_filaManage" class="com.action.FileManageAction" method="fileManage">
+            <result name="fileManage_success">fileManage.jsp</result>
+        </action> -->
 
-        <!-- UploadAction类-->
-
-        <action name="UploadListAction_upload" class="com.action.UploadAction" method="uploadList">
-            <param name="savePath">/files</param>
-            <result name="uploadList_success"></result>
+        <!-- FileReaderAction类 -->
+        <action name="FileReaderAction_readExcel" class="com.action.FileReaderAction" method="readExcel">
+            <result></result>
+        </action>
+        <action name="FileReaderAction_readWord" class="com.action.FileReaderAction" method="readWord">
+            <result></result>
         </action>
 
-        <action name="UploadFileAction_upload" class="com.action.UploadFileAction" method="uploadFile">
+        <!-- FileUploadAction类-->
+        <action name="FileUploadAction_upload" class="com.action.FileUploadAction">
+            <result name="uploadWord_success">/Views/Quantitative/Application.jsp</result>
+            <result name="uploadSheet_success">/Views/Qualitative/Sheet.jsp</result>
+            <result name="uploadFile_failure">/Views/fileUpload.jsp</result>
+        </action>
+
+        <!-- UploadFileAction类-->
+        <!--<action name="UploadFileAction_upload" class="com.action.UploadFileAction" method="uploadFile">
             <result name="uploadFile_success">/view/Quantitative/Application.jsp</result>
-        </action>
+        </action>-->
 
+        <!-- SheetAction类 -->
+        <!-- 打分表管理—列出专家打分表列表 -->
+        <action name="SheetAction_sheetList" class="com.action.SheetAction" method="sheetList">
+            <result name="sheetList_success">/Views/Qualitative/Sheet.jsp</result>
+        </action>
+        <!-- 按照专家和年份搜索打分表 -->
+        <action name="SheetAction_sheetSearch" class="com.action.SheetAction" method="sheetSearch">
+            <result name="sheetSearch_success">/Views/Qualitative/Sheet.jsp</result>
+        </action>
+        <!-- 未上传打分表的专家 -->
+        <action name="SheetAction_getUnupExpert" class="com.action.SheetAction" method="getUnUpExpertByYear">
+            <result name="getUnUpExpertByYear_success" type="redirect">/Views/Qualitative/UnUpExperts.jsp</result>
+        </action>
 
         <!-- DownLoadAction类-->
+        <!-- 下载Excel或Word单个文件 -->
         <action name="DownlodaAction_download" class="com.action.DownloadAction" method="execute">
             <!-- 以stream二进制流的方式打开 -->
             <result name="download_success" type="stream">
@@ -82,29 +122,28 @@
             </result>
         </action>
 
+        <!--WordAction类-->
+        <!-- 申报书列表 -->
+        <action name="WordAction_wordList" class="com.action.WordAction" method="wordList">
+            <result name="wordList_success">/Views/Quantitative/Application.jsp</result>
+        </action>
+        <!-- 按照专家和年份搜索打分表 -->
+        <action name="WordAction_dirSearch" class="com.action.WordAction" method="dirSearch">
+            <result name="dirSearch_success">/Views/Quantitative/Application.jsp</result>
+        </action>
+
         <!-- DownZipAction类 -->
+        <!-- 下载申报书 -->
         <action name="DownZipAction_downloadzip" class="com.action.DownZipAction" method="downLoadZip">
             <result name="downLoadZip_success">/Views/Quantitative/Application.jsp</result>
         </action>
 
-        <!-- FileManageAction类 -->
-        <action name="FileManageAction_filaManage" class="com.action.FileManageAction" method="fileManage">
-            <result name="fileManage_success">fileManage.jsp</result>
+        <!-- DeleteFileAction类 -->
+        <action name="DeleteFileAction_deleteFile" class="com.action.DeleteFileAction" method="deleteFile">
+            <result name="deleteDir_success" type="redirect">WordAction_wordList.action?dir=/dlassess</result>
+            <result name="deleteSheet_success" type="redirect">SheetAction_sheetList?dir=/dxassess</result>
+            <result name="deleteFile_failure"></result>
         </action>
-
-        <!-- FileReaderAction类 -->
-        <action name="FileReaderAction_readExcel" class="com.action.FileReaderAction" method="readExcel">
-            <result></result>
-        </action>
-        <action name="FileReaderAction_readWord" class="com.action.FileReaderAction" method="readWord">
-            <result></result>
-        </action>
-        
-        <!-- SheetAction类 -->
-        <action name="SheetAction_sheetList" class="com.action.SheetAction" method="sheetList">
-            <result name="sheetList_success">/Views/Qualitative/Sheet.jsp</result>
-        </action>
-
 
     </package>
 </struts>

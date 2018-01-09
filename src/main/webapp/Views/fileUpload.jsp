@@ -13,10 +13,8 @@
     <title>文件上传</title>
 </head>
 <body>
-    <form action="UploadAction_upload" enctype="multipart/form-data" method="post">
-        文件1:<input type="file" name="dxWords"><br/>
-        文件2:<input type="file" name="dxWords"><br/>
-        文件3:<input type="file" name="dxWords"><br/>
+    <form action="FileUploadAction_upload.action" enctype="multipart/form-data" method="post">
+        文件:<input type="file" name="upload"><br/>
         <input type="submit" value="上传" />
     </form>
 </body>

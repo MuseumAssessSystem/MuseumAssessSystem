@@ -10,4 +10,5 @@ import java.util.List;
 public interface RoleService {
     RoleEntity getRoleById(int rid);
     List<RoleEntity> getAllRole();
+    List<RoleEntity> getRoleByName(String rname);
 }

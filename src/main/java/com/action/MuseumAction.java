@@ -19,6 +19,7 @@ import java.util.Map;
  */
 public class MuseumAction extends ActionSupport{
     private MuseumEntity museumEntity;
+    private String mid;
 
     public String getAllMuseum() {
         /**
@@ -100,9 +101,8 @@ public class MuseumAction extends ActionSupport{
         *@Author:xyj
         *@Date:14:50 2018/1/6
         **/
-        Map params =ActionContext.getContext().getParameters();
-        String mid= ((String[]) params.get("mid"))[0];
-        MuseumService museumService =new MuseumServiceImpl();
+        MuseumService museumService = new MuseumServiceImpl();
+        System.out.println("mid = " + new Integer(mid));
         museumService.deleteMuseum(new Integer(mid));
         return "deleteMuseum_success";
     }
@@ -127,7 +127,7 @@ public class MuseumAction extends ActionSupport{
         *@Date:19:09 2018/1/6
         **/
         Map params= ActionContext.getContext().getParameters();
-        String year= ((String[]) params.get("year"))[0];
+        String year= ((String[]) params.get("years"))[0];
 
         MuseumService museumService=new MuseumServiceImpl();
         DlassessService dlassessService=new DlassessServiceImpl();
@@ -150,9 +150,11 @@ public class MuseumAction extends ActionSupport{
 
     }
 
+    public String getMid() {
+        return mid;
+    }
 
-
-
-
-
+    public void setMid(String mid) {
+        this.mid = mid;
+    }
 }

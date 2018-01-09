@@ -6,9 +6,10 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.service.RoleService;
 import com.service.UserService;
-import com.service.impl.UserServiceImpl;
 import com.service.impl.RoleServiceImpl;
+import com.service.impl.UserServiceImpl;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +23,8 @@ public class UserAction extends ActionSupport{
     private String password;
     private String rname;
     private String uid;
-    private UserEntity user;
+    // private UserEntity user;
+    private RoleEntity role;
 
     public String login(){         //处理登录请求的方法
         /**
@@ -101,14 +103,40 @@ public class UserAction extends ActionSupport{
         return "getUserByUname_success";
     }
 
+    public String getUserById(){
+        // 根据 uid 获取user
+        UserService userService = new UserServiceImpl();
+        // List<UserEntity> users = userService.getUserById(new Integer(uid));
+        // ActionContext.getContext().getSession().put("user",user);
+        List<UserEntity> userList = userService.getUserById(new Integer(uid));
+        ActionContext.getContext().getSession().put("userList",userList);
+
+        // 根据 user 的 rid 获取role
+        RoleService roleService = new RoleServiceImpl();
+        role = roleService.getRoleById(userList.get(0).getRid());
+        ActionContext.getContext().getSession().put("role",role);
+
+        if(userList.size()!=0)
+            return "getUserById_success";
+        else
+            return "getUserById_failure";
+    }
+
     public String addUser(){
         Map params = ActionContext.getContext().getParameters();
         UserService userService = new UserServiceImpl();
-        RoleService roleService = new RoleServiceImpl();
-        user = (UserEntity)params.get("user");
+        UserEntity user = new UserEntity();
+        user.setUname(((String[])params.get("userName"))[0]);
+        user.setPassword(((String[])params.get("password"))[0]);
+        if(((String[])params.get("email"))[0]!=null)
+            user.setEmail(((String[])params.get("email"))[0]);
+        if(((String[])params.get("telephone"))[0]!=null)
+            user.setPhone(((String[])params.get("telephone"))[0]);
 
-        List<RoleEntity> roles = roleService.getAllRole();
-        ActionContext.getContext().getSession().put("roles",roles);
+        String rname = ((String[])params.get("roleName"))[0];
+        RoleService roleService = new RoleServiceImpl();
+        int rid = roleService.getRoleByName(rname).get(0).getRid();
+        user.setRid(rid);
 
         userService.addUser(user);
         return "addUser_success";
@@ -120,10 +148,26 @@ public class UserAction extends ActionSupport{
         return "deleteUser_success";
     }
 
-    public String updateUser(){
-        Map session = ActionContext.getContext().getSession();
+    public String updateUser() throws UnsupportedEncodingException {
+        Map params = ActionContext.getContext().getParameters();
         UserService userService = new UserServiceImpl();
-        user = (UserEntity)session.get("user");
+        UserEntity user = new UserEntity();
+        user.setUname(((String[])params.get("userName"))[0]);
+        user.setPassword(((String[])params.get("password"))[0]);
+        user.setEmail(((String[])params.get("email"))[0]);
+        user.setPhone(((String[])params.get("telephone"))[0]);
+        user.setUid(new Integer(((String[])params.get("uid"))[0]));
+
+        String rname = ((String[])params.get("roleName"))[0];
+        System.out.println("roleName = " + rname);
+
+        RoleService roleService = new RoleServiceImpl();
+        int rid = roleService.getRoleByName(rname).get(0).getRid();
+
+        user.setRid(rid);
+
+        System.out.println("user name = " + user.getUname());
+
         userService.updateUser(user);
         return "updateUser_success";
     }
@@ -142,5 +186,13 @@ public class UserAction extends ActionSupport{
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public RoleEntity getRole() {
+        return role;
+    }
+
+    public void setRole(RoleEntity role) {
+        this.role = role;
     }
 }

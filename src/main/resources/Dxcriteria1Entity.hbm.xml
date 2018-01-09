@@ -5,7 +5,9 @@
 <hibernate-mapping>
 
     <class name="com.entity.Dxcriteria1Entity" table="dxcriteria1" schema="museum_assess">
-        <id name="dxc1Id" column="dxc1id"/>
+        <id name="dxc1Id" type="java.lang.Integer" column="dxc1id">
+            <generator class="increment"/>
+        </id>
         <property name="dxc1Name" column="dxc1name"/>
     </class>
 </hibernate-mapping>

@@ -13,7 +13,7 @@
 <body>
 　　<h2>文件下载内容：</h2>
     <br/>
-    专家定性打分表.xls:<a href="FileReaderAction_readExcel.action?dxFirst=藏品管理&filePath=专家打分表.xlsx">解析定性打分表</a><br/>
-    专家定量打分表.docx<a href="FileReaderAction_readWord.action?filePath=定量计算分数表（测试1）.docx">解析定量打分表</a>
+    专家定性打分表.xls:<a href="FileReaderAction_readExcel.action?dxFirst=藏品管理&filePath=专家1-2008.xlsx">解析定性打分表</a><br/>
+    专家定量打分表.docx<a href="FileReaderAction_readWord.action?filePath=博物馆1-2008/定量计算分数表（测试1）.docx">解析定量打分表</a>
 </body>
 </html>

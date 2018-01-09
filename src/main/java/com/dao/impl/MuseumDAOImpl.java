@@ -32,6 +32,7 @@ public class MuseumDAOImpl extends BaseHibernateDAO implements MuseumDAO{
         *@Author:xyj
         *@Date:15:53 2018/1/1
         **/
+        System.out.println("museumDAO mid = " + museumEntity.getMid());
         super.delete(museumEntity);
     }
 

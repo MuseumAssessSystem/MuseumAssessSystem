@@ -1,6 +1,5 @@
 package com.service;
 
-import com.entity.PriviledgeEntity;
 import com.entity.UserEntity;
 
 import java.util.List;
@@ -11,8 +10,8 @@ import java.util.List;
 public interface UserService {
     boolean addUser(UserEntity userEntity);
     String login(UserEntity userEntity);
-    List getAllUser();
-    List getUserById(int id);
+    List<UserEntity> getAllUser();
+    List<UserEntity> getUserById(int id);
     boolean updateUser(UserEntity userEntity);
     boolean deleteUser(int id);
     List<UserEntity> getUserByUname(String uname);

@@ -51,13 +51,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List getAllUser() {
+    public List<UserEntity> getAllUser() {
         UserEntity userEntity  = new UserEntity();
         return this.userDAO.getUser(userEntity);
     }
 
     @Override
-    public List getUserById(int id) {
+    public List<UserEntity> getUserById(int id) {
         return this.userDAO.getUser(new UserEntity(id));
     }
 

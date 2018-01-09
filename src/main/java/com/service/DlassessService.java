@@ -14,4 +14,5 @@ public interface DlassessService {
    boolean addDlassess(DlassessEntity dlassessEntity);
    boolean deleteDlassess(DlassessEntity dlassessEntity);
    boolean updateDlassess(DlassessEntity dlassessEntity);
+   void computeDlassess(int year);
 }
